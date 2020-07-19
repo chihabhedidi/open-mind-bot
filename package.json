@@ -1,0 +1,21 @@
+{
+  "name": "open-mind",
+  "version": "1.0.0",
+  "description": "all in one bot",
+  "main": "server.js",
+  "author": "GYox",
+  "license": "ISC",
+  "dependencies": {
+    "common-tags": "^1.8.0",
+    "dateformat": "^3.0.3",
+    "discord-giveaways": "^4.2.1",
+    "discord.js": "^12.2.0",
+    "fs": "0.0.1-security",
+    "math": "0.0.3",
+    "moment": "^2.27.0",
+    "ms": "^2.1.2",
+    "os": "^0.1.1",
+    "random-puppy": "^1.1.0",
+    "timestamp": "0.0.1"
+  }
+}
