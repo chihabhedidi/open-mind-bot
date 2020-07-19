@@ -3,11 +3,13 @@ const botsettings = require('./botsettings.json');
 const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
+var express  = require('express')
 
-
+var app  = express()
+var server = app.listen(process.env.PORT || 8081, () => {
+    console.log('Server is started on 127.0.0.1:'+ (process.env.PORT || 8081))
+})
 require("./util/eventHandler")(bot)
-
-
 
 const fs = require("fs");
 bot.commands = new Discord.Collection();
