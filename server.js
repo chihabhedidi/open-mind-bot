@@ -9,6 +9,13 @@ var app  = express()
 var server = app.listen(process.env.PORT || 8081, () => {
     console.log('Server is started on 127.0.0.1:'+ (process.env.PORT || 8081))
 })
+
+var reqTimer = setTimeout(function wakeUp() {
+   request("https://nameless-gorge-19527.herokuapp.com", function() {
+      console.log("WAKE UP DYNO");
+   });
+   return reqTimer = setTimeout(wakeUp, 1200000);
+}, 1200000);
 require("./util/eventHandler")(bot)
 
 const fs = require("fs");
