@@ -4,8 +4,7 @@ const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
 
-var port_number = server.listen(process.env.PORT || 3000);
-app.listen(port_number);
+
 require("./util/eventHandler")(bot)
 
 const fs = require("fs");
