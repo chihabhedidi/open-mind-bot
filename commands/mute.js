@@ -7,28 +7,53 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
     
   if(!message.member.hasPermission('ADMINISTRATOR'))
-  message.channel.send("You don't have permission to use that command.");
+  return message.channel.send("You don't have permission to use that command.");
   const user = message.mentions.users.first();
   if(user) {
     const member = message.guild.member(user);
     if(member){ 
      let mutedRole = message.guild.roles.cache.find(x => x.name === "Muted")
+     
      if(!mutedRole) {
-        return message.channel.send("This server do not have role with name `Muted`")
-      }
-      let reason = args.slice(1).join(" ")
-    
-    
-      if(!reason) {
-        return message.channel.send("Please Give the reason to mute the member")
-      }
+      message.channel.send("the server doesnt have a Mute role,i will create one for you try again please")
+      let mutedRole = await message.guild.roles.create({
         
-        if(mutedRole) {
-            member.roles.add(mutedRole);
-            message.channel.send("User was Successfully muted.");
-        }
+          data: {
+            name: 'Muted',
+            color: 'BLUE', 
+          }
+        })
+        
+        message.guild.channels.cache.forEach(async (channel, id) => {
+     await channel.updateOverwrite(mutedRole, {SEND_MESSAGES: false });
+      
+            
+          });
+      
+  }else{
+  let reason = args.slice(1).join(" ")
+    
+  if(!reason) {
+    return message.channel.send("Please Give the reason to mute the member")
+  }
+  let mutetime = args[2];
+if(!mutetime) return message.channel.send("You didn't specify a time!");
+if(member.roles.cache.has(mutedRole.id)){
+  return message.channel.send(`${member} is already muted!`);
+ }
+ 
+await(member.roles.add(mutedRole));
+message.channel.send(`${member} has been muted for ${ms(ms(mutetime))}`);
+
+setTimeout(function(){
+member.roles.remove(mutedRole);
+message.channel.send(`${member} has been unmuted!`);
+}, ms(mutetime));
+  }
+     
+        
         }else{
-          message.reply("That user isn't in this server!");
+         return message.reply("That user isn't in this server!");
 }
 }else{return message.channel.send("Please please mention member")}}
 

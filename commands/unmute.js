@@ -6,7 +6,7 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission('ADMINISTRATOR'))
-    message.channel.send("You don't have permission to use that command.");
+    return message.channel.send("You don't have permission to use that command.");
     const user = message.mentions.users.first();    
     if(user) {
         const member = message.guild.member(user);
@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
         
         if(mutedRole) {
             member.roles.remove(mutedRole);
-            message.channel.send("User was Successfully Unmuted.");
+            return message.channel.send("User was Successfully Unmuted.");
         }
 }else{
     message.reply("That user isn't in this server!");

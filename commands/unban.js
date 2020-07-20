@@ -4,7 +4,8 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-
+if(!message.member.hasPermission('ADMINISTRATOR'))
+    return message.channel.send("You don't have permission to use that command.");
   const member = args[0];
 
         if (!member) {
