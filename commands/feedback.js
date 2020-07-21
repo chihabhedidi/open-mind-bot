@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
     const embed = new MessageEmbed()
     .setThumbnail('https://cdn.discordapp.com/avatars/219779965967663104/a_95edb470cf11cc3e2b8f643da93ea283.png')
     .setTitle('Contact the Developer on Discord')
-    .setDescription(`GYox#0001`)
+    .setDescription(`GYox#8550`)
     .setColor('#181687')
     
 

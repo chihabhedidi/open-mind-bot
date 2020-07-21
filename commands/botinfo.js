@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+﻿const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js')
 const os = require('os')
@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
             inline: true
         }
     )
-    .setFooter(`Created By: GYox#0001`)
+    .setFooter(`Created By: GYox#8550`)
 
 await message.channel.send(embed)
 
