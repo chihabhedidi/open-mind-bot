@@ -28,6 +28,6 @@ module.exports.config = {
     description: "add a role to  a user",
     usage: "*addrole",
     accessableby: "Admins",
-    aliases: [""]
+    aliases: []
 }
 
