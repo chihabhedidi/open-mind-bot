@@ -3,22 +3,27 @@ const botsettings = require('./botsettings.json');
 const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
-var express  = require('express')
+const db = require("quick.db")
+bot.on("guildMemberAdd", (member) => { //usage of welcome event
+  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+  
+  if(chx === null) { //check if var have value or not
+    return;
+  }
 
-var app  = express()
-var server = app.listen(process.env.PORT || 8081, () => {
-    console.log('Server is started on 127.0.0.1:'+ (process.env.PORT || 8081))
+  let wembed = new Discord.MessageEmbed() //define embed
+  .setAuthor(member.user.username, member.user.avatarURL())
+  .setColor("#ff2050")
+  .setThumbnail(member.user.avatarURL())
+  .setDescription(`We are very happy to have you in our server`);
+  
+  bot.channels.cache.get(chx).send(wembed) //get channel and send embed
 })
 
-var reqTimer = setTimeout(function wakeUp() {
-   request("https://nameless-gorge-19527.herokuapp.com", function() {
-      console.log("WAKE UP DYNO");
-   });
-   return reqTimer = setTimeout(wakeUp, 1200000);
-}, 1200000);
 require("./util/eventHandler")(bot)
 
 const fs = require("fs");
+const { isNull } = require('util');
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
@@ -52,18 +57,24 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("message", async message => {
   if(message.author.bot || message.channel.type === "dm") return;
 
-  let prefix = botsettings.prefix;
+  if(!message.guild) return;
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  
+  if(prefix === null ) prefix = botsettings.default_prefix;
+  if(message.content.startsWith("prefix")) 
+  return message.channel.send(`the prefix for ${message.guild.name} is \`${prefix}\``);
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
   if(!message.content.startsWith(prefix)) return;
   let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
- if(commandfile){ commandfile.run(bot,message,args)}else{
+  if(commandfile){ commandfile.run(bot,message,args)}else{
     return message.channel.send("```i dont have that command please type *help to see all commands```")
   }
 
 
 })
+
 
 bot.login(process.env.token);
