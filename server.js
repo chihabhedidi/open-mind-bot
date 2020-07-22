@@ -4,6 +4,7 @@ const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db")
+
 bot.on("guildMemberAdd", (member) => { //usage of welcome event
   let chx = db.get(`welchannel_${member.guild.id}`); //defining var
   
@@ -13,9 +14,24 @@ bot.on("guildMemberAdd", (member) => { //usage of welcome event
 
   let wembed = new Discord.MessageEmbed() //define embed
   .setAuthor(member.user.username, member.user.avatarURL())
-  .setColor("#ff2050")
+  .setColor("RANDOM")
   .setThumbnail(member.user.avatarURL())
   .setDescription(`We are very happy to have you in our server`);
+  
+  bot.channels.cache.get(chx).send(wembed) //get channel and send embed
+})
+bot.on("guildMemberRemove", (member) => { //usage of welcome event
+  let chx = db.get(`leavechannel_${member.guild.id}`); //defining var
+  
+  if(chx === null) { //check if var have value or not
+    return;
+  }
+
+  let wembed = new Discord.MessageEmbed() //define embed
+  .setAuthor(member.user.username, member.user.avatarURL())
+  .setColor("RANDOM")
+  .setThumbnail(member.user.avatarURL())
+  .setDescription(`we hope to see you again in our server`);
   
   bot.channels.cache.get(chx).send(wembed) //get channel and send embed
 })
