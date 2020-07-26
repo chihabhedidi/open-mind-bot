@@ -3,11 +3,34 @@ const botsettings = require('./botsettings.json');
 const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
-const db = require("quick.db")
+const db = require("quick.db");
 
-bot.on("guildMemberAdd", (member) => { //usage of welcome event
-  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+
+bot.on("guildMemberAdd", async member => { //usage of welcome event
+  const serverstats = new db.table('ServerStats');
+  let sguildid = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.guildid' })
+  let tusers = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.totusers' })
+  let membs = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.membcount' })
+  let bots = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.botcount' })
   
+	const totalsize = member.guild.memberCount;
+	const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
+	const humansize = totalsize - botsize;
+  
+  if(member.guild.id === sguildid) { 
+		member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
+		member.guild.channels.cache.get(membs).setName("Members : " + humansize);
+		member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
+	}
+  
+  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+  let role = db.get(`autorole_${member.guild.id}`)
+  let brole = db.get(`autobotrole_${member.guild.id}`)
+  if(!member.user.bot){
+    member.roles.add(role)
+  }else{
+    member.roles.add(brole)
+  }
   if(chx === null) { //check if var have value or not
     return;
   }
@@ -20,7 +43,24 @@ bot.on("guildMemberAdd", (member) => { //usage of welcome event
   
   bot.channels.cache.get(chx).send(wembed) //get channel and send embed
 })
-bot.on("guildMemberRemove", (member) => { //usage of welcome event
+bot.on("guildMemberRemove", async member  => { //usage of welcome event
+
+  const serverstats = new db.table('ServerStats');
+  let sguildid = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.guildid' })
+  let tusers = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.totusers' })
+  let membs = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.membcount' })
+  let bots = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.botcount' })
+  
+	const totalsize = member.guild.memberCount;
+	const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
+	const humansize = totalsize - botsize;
+  
+  if(member.guild.id === sguildid) { 
+		member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
+		member.guild.channels.cache.get(membs).setName("Members : " + humansize);
+		member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
+  
+  }
   let chx = db.get(`leavechannel_${member.guild.id}`); //defining var
   
   if(chx === null) { //check if var have value or not
@@ -34,6 +74,8 @@ bot.on("guildMemberRemove", (member) => { //usage of welcome event
   .setDescription(`we hope to see you again in our server`);
   
   bot.channels.cache.get(chx).send(wembed) //get channel and send embed
+  
+  
 })
 
 require("./util/eventHandler")(bot)
@@ -86,8 +128,7 @@ bot.on("message", async message => {
   if(!message.content.startsWith(prefix)) return;
   let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
   if(commandfile){ commandfile.run(bot,message,args)}else{
-     return message.channel.send(`\`\`\`i dont have that command please type ${prefix}help to see all commands\`\`\` `)
-
+    return message.channel.send(`\`\`\`i dont have that command please type ${prefix}help to see all commands\`\`\` `)
   }
 
 

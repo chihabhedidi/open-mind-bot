@@ -5,7 +5,8 @@ const db = require("quick.db")
 
 
 module.exports.run = async (bot, message, args) => {
-
+  if(!message.member.hasPermission('ADMINISTRATOR'))
+  return message.channel.send("You don't have permission to use that command.");
     let channel = message.mentions.channels.first() //mentioned channel
     
     if(!channel) { //if channel is not mentioned
