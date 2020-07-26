@@ -29,7 +29,7 @@ if(user) {
 module.exports.config = {
     name: "kick",
     description: "Kicks a user",
-    usage: "*kick",
+    usage: "m!kick",
     accessableby: "Admins",
     aliases: []
 }

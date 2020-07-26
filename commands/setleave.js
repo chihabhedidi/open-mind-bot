@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "setleave",
     description: "set a leave channel",
-    usage: "*setleave",
+    usage: "m!setleave",
     accessableby: "Admins",
     aliases: []
 }

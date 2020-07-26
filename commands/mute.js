@@ -60,7 +60,7 @@ message.channel.send(`${member} has been unmuted!`);
 module.exports.config = {
     name: "mute",
     description: "Mute members",
-    usage: "*mute",
+    usage: "m!mute",
     accessableby: "Admins",
     aliases: []
 }

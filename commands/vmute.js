@@ -60,7 +60,7 @@ message.channel.send(`${member} has been (Voice) unmuted!`);
 module.exports.config = {
     name: "vmute",
     description: "voice Mute members",
-    usage: "*vmute",
+    usage: "m!vmute",
     accessableby: "Admins",
     aliases: []
 }

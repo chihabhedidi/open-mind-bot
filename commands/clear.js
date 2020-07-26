@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
 module.exports.config = {
     name: "clear",
     description: "clears message",
-    usage: "*claer",
+    usage: "m!claer",
     accessableby: "Members",
     aliases: ['c', 'purge']
 }

@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "warnings",
     description: "show the number of warns of a members",
-    usage: "*warnings",
+    usage: "m!warnings",
     accessableby: "Members",
     aliases: []
 }

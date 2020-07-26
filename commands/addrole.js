@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "addrole",
     description: "add a role to  a user",
-    usage: "*addrole",
+    usage: "m!addrole",
     accessableby: "Admins",
     aliases: []
 }

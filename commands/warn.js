@@ -46,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "warn",
     description: "warn members",
-    usage: "*warn",
+    usage: "m!warn",
     accessableby: "Admins",
     aliases: []
 }

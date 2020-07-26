@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "slowmode",
     description: "slowmode a specific channel",
-    usage: "*slowmode",
+    usage: "m!slowmode",
     accessableby: "Admins",
     aliases: []
 }

@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "unlock",
     description: "unlock a specific channel",
-    usage: "*unlock",
+    usage: "m!unlock",
     accessableby: "Admins",
     aliases: []
 }

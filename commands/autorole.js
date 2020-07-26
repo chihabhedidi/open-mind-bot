@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "autorole",
     description: "give  a user a role when he join",
-    usage: "*autorole",
+    usage: "m!autorole",
     accessableby: "Admins",
     aliases: []
 }

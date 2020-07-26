@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "autobotrole",
     description: "give  a bot a role when he join",
-    usage: "*autobotrole",
+    usage: "m!autobotrole",
     accessableby: "Admins",
     aliases: []
 }

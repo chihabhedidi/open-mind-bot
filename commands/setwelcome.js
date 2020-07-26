@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "setwelcome",
     description: "set a welcome channel",
-    usage: "*setwelcome",
+    usage: "m!setwelcome",
     accessableby: "Admins",
     aliases: []
 }

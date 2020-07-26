@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "announce",
     description: "Get the bot to say what ever you want in a specific channel.",
-    usage: "*announce",
+    usage: "m!announce",
     accessableby: "Admins",
     aliases: []
 }

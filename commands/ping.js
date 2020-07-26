@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "ping",
     description: "show your ping",
-    usage: "*ping",
+    usage: "m!ping",
     accessableby: "Members",
     aliases: []
 }

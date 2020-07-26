@@ -28,7 +28,7 @@ if(!message.member.hasPermission('ADMINISTRATOR'))
 module.exports.config = {
     name: "unban",
     description: "unban users",
-    usage: "*unban",
+    usage: "m!unban",
     accessableby: "Admins",
     aliases: []
 }

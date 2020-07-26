@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "reset-warnings",
     description: "rest the number of warns of a members",
-    usage: "*reset-warnings",
+    usage: "m!reset-warnings",
     accessableby: "Admins",
     aliases: []
 }

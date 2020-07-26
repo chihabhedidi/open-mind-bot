@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "serverstats",
     description: "setup server stats",
-    usage: "*serverstats",
+    usage: "m!serverstats",
     accessableby: "Admins",
     aliases: []
 }
