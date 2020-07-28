@@ -5,7 +5,6 @@ const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
 
-
 bot.on("guildMemberAdd", async member => { //usage of welcome event
   const serverstats = new db.table('ServerStats');
   let sguildid = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.guildid' })
