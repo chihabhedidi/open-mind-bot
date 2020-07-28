@@ -11,6 +11,9 @@ bot.on("guildMemberAdd", async member => { //usage of welcome event
   let tusers = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.totusers' })
   let membs = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.membcount' })
   let bots = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.botcount' })
+  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+  let role = db.get(`autorole_${member.guild.id}`)
+  let brole = db.get(`autobotrole_${member.guild.id}`)
   
 	const totalsize = member.guild.memberCount;
 	const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
@@ -20,19 +23,18 @@ bot.on("guildMemberAdd", async member => { //usage of welcome event
 		member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
 		member.guild.channels.cache.get(membs).setName("Members : " + humansize);
 		member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
-	}
+    if(!member.user.bot){
+      member.roles.add(role)
+    }else{
+      member.roles.add(brole)
+    }
+    if(chx === null) { //check if var have value or not
+      return;
+    }
+  }
   
-  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
-  let role = db.get(`autorole_${member.guild.id}`)
-  let brole = db.get(`autobotrole_${member.guild.id}`)
-  if(!member.user.bot){
-    member.roles.add(role)
-  }else{
-    member.roles.add(brole)
-  }
-  if(chx === null) { //check if var have value or not
-    return;
-  }
+  
+ 
 
   let wembed = new Discord.MessageEmbed() //define embed
   .setAuthor(member.user.username, member.user.avatarURL())
@@ -49,7 +51,7 @@ bot.on("guildMemberRemove", async member  => { //usage of welcome event
   let tusers = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.totusers' })
   let membs = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.membcount' })
   let bots = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.botcount' })
-  
+  let chx = db.get(`leavechannel_${member.guild.id}`); //defining var
 	const totalsize = member.guild.memberCount;
 	const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
 	const humansize = totalsize - botsize;
@@ -58,13 +60,13 @@ bot.on("guildMemberRemove", async member  => { //usage of welcome event
 		member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
 		member.guild.channels.cache.get(membs).setName("Members : " + humansize);
 		member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
+    if(chx === null) { //check if var have value or not
+      return;
+    }
   
   }
-  let chx = db.get(`leavechannel_${member.guild.id}`); //defining var
   
-  if(chx === null) { //check if var have value or not
-    return;
-  }
+  
 
   let wembed = new Discord.MessageEmbed() //define embed
   .setAuthor(member.user.username, member.user.avatarURL())
