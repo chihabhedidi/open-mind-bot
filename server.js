@@ -7,19 +7,13 @@ const db = require("quick.db");
 
 bot.on("guildMemberAdd", async member => { //usage of welcome event
   let chx = db.get(`welchannel_${member.guild.id}`); //defining var
-  let role = db.get(`autorole_${member.guild.id}`)
-  let brole = db.get(`autobotrole_${member.guild.id}`)
   
-	
-  if(!member.user.bot){
-      member.roles.add(role)
-    }else{
-      member.roles.add(brole)
-    }
+
     if(chx === null) { //check if var have value or not
       return;
     }
-  
+   
+
   
   
  
