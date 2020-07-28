@@ -6,24 +6,12 @@ const bot = new Discord.Client({disableEveryone: true});
 const db = require("quick.db");
 
 bot.on("guildMemberAdd", async member => { //usage of welcome event
-  const serverstats = new db.table('ServerStats');
-  let sguildid = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.guildid' })
-  let tusers = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.totusers' })
-  let membs = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.membcount' })
-  let bots = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.botcount' })
   let chx = db.get(`welchannel_${member.guild.id}`); //defining var
   let role = db.get(`autorole_${member.guild.id}`)
   let brole = db.get(`autobotrole_${member.guild.id}`)
   
-	const totalsize = member.guild.memberCount;
-	const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
-	const humansize = totalsize - botsize;
-  
-  if(member.guild.id === sguildid) { 
-		member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
-		member.guild.channels.cache.get(membs).setName("Members : " + humansize);
-		member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
-    if(!member.user.bot){
+	
+  if(!member.user.bot){
       member.roles.add(role)
     }else{
       member.roles.add(brole)
@@ -31,7 +19,7 @@ bot.on("guildMemberAdd", async member => { //usage of welcome event
     if(chx === null) { //check if var have value or not
       return;
     }
-  }
+  
   
   
  
@@ -46,26 +34,11 @@ bot.on("guildMemberAdd", async member => { //usage of welcome event
 })
 bot.on("guildMemberRemove", async member  => { //usage of welcome event
 
-  const serverstats = new db.table('ServerStats');
-  let sguildid = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.guildid' })
-  let tusers = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.totusers' })
-  let membs = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.membcount' })
-  let bots = await serverstats.fetch(`Stats_${member.guild.id}`, { target: '.botcount' })
   let chx = db.get(`leavechannel_${member.guild.id}`); //defining var
-	const totalsize = member.guild.memberCount;
-	const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
-	const humansize = totalsize - botsize;
-  
-  if(member.guild.id === sguildid) { 
-		member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
-		member.guild.channels.cache.get(membs).setName("Members : " + humansize);
-		member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
-    if(chx === null) { //check if var have value or not
+
+   if(chx === null) { //check if var have value or not
       return;
     }
-  
-  }
-  
   
 
   let wembed = new Discord.MessageEmbed() //define embed
@@ -75,7 +48,6 @@ bot.on("guildMemberRemove", async member  => { //usage of welcome event
   .setDescription(`we hope to see you again in our server`);
   
   bot.channels.cache.get(chx).send(wembed) //get channel and send embed
-  
   
 })
 
