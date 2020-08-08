@@ -3,8 +3,8 @@ const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('ADMINISTRATOR'))
-    return message.channel.send("You don't have permission to use that command.");
+    if(!message.member.hasPermission('SEND_MESSAGES'))
+    return message.channel.send("You don't have permission SEND_MESSAGES to use this command.");
     let rChannel = message.mentions.channels.first();
     if (!rChannel)
       return message.channel.send(
@@ -29,9 +29,9 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "announce",
-    description: "Get the bot to say what ever you want in a specific channel.",
-    usage: "m!announce",
-    accessableby: "Admins",
+    description: "Announce An embed message in a specific channel",
+    usage: "announce [#channel] <Title> <the message>",
+    accessableby: "SEND_MESSAGES",
     aliases: []
 }
 

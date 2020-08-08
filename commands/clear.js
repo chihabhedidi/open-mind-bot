@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     }
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        return message.reply("Missing Permissions!").then(m => m.delete(5000));
+        return message.reply("You don't have permission to MANAGE_MESSAGES use this command!").then(m => m.delete(5000));
     }
 
     if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
@@ -29,8 +29,8 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.config = {
     name: "clear",
-    description: "clears message",
-    usage: "m!claer",
-    accessableby: "Members",
-    aliases: ['c', 'purge']
+    description: "Clear A specific number of messages",
+    usage: "clear [number]",
+    accessableby: "MANAGE_MESSAGES",
+    aliases: []
 }

@@ -21,9 +21,9 @@ await message.channel.send(embed)
 }
 module.exports.config = {
     name: "invite",
-    description: "invite the bot to your server",
-    usage: "m!invite",
-    accessableby: "Members",
+    description: "To invite the bot to your server",
+    usage: "invite",
+    accessableby: "Public Usage",
     aliases: []
 }
 

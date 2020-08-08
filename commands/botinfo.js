@@ -53,9 +53,9 @@ await message.channel.send(embed)
 
 module.exports.config = {
     name: "botinfo",
-    description: "show information about the bot",
-    usage: "m!botinfo",
-    accessableby: "Members",
+    description: "To show information about the bot",
+    usage: "botinfo",
+    accessableby: "Public Usage",
     aliases: []
 }
 

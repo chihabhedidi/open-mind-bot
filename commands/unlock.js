@@ -4,7 +4,7 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     
-  if(!message.member.hasPermission('ADMINISTRATOR'))
+  if(!message.member.hasPermission('MANAGE_ROLES'))
   return message.channel.send("You don't have permission to use that command.");
   
         
@@ -16,8 +16,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "unlock",
-    description: "unlock a specific channel",
-    usage: "m!unlock",
-    accessableby: "Admins",
+    description: "Unlock a specific channel",
+    usage: "unlock",
+    accessableby: "MANAGE_ROLES",
     aliases: []
 }

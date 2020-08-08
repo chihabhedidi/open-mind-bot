@@ -28,8 +28,8 @@ if(user) {
 
 module.exports.config = {
     name: "ban",
-    description: "ban a user",
-    usage: "m!ban",
+    description: "A specific member from a server",
+    usage: "ban [Mention]",
     accessableby: "Admins",
     aliases: []
 }

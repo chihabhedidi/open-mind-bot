@@ -17,8 +17,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "meme",
-    description: "send random memes",
-    usage: "m!meme",
-    accessableby: "Members",
+    description: "Send random meme",
+    usage: "meme",
+    accessableby: "Public Usage",
     aliases: []
 }

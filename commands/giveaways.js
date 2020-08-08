@@ -74,8 +74,8 @@ module.exports.run = async (bot, message, args) => {
 }
 module.exports.config = {
     name: "giveaway",
-    description: "giveaway a prize",
-    usage: "m!giveaway",
-    accessableby: "Admins",
+    description: "Giveaway A prize in your server",
+    usage: "giveaway [#channel] <Time> <number of winners> (the prize)",
+    accessableby: "MANAGE_MESSAGES",
     aliases: []
 }

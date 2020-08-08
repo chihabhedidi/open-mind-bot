@@ -79,8 +79,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "userinfo",
-    description: "saw information about a member",
-    usage: "m!userinfo",
-    accessableby: "Members",
+    description: "To show information about a specific member",
+    usage: "userinfo [Mention] ",
+    accessableby: "Public Usage",
     aliases: []
 }

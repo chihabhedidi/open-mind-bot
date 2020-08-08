@@ -27,8 +27,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "vunmute",
-    description: "(voice)unmute members",
-    usage: "m!vunmute",
+    description: "Voice unmute a specific member from a server",
+    usage: "vunmute [Mention]",
     accessableby: "Admins",
     aliases: []
 }

@@ -2,8 +2,8 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('ADMINISTRATOR'))
-    return message.channel.send("You don't have permission to use that command.");
+    if(!message.member.hasPermission('MANAGE_CHANNELS'))
+    return message.channel.send("You don't have permission MANAGE_CHANNELS to use this command.");
    
     if (!args[0])
     return message.channel.send(
@@ -23,9 +23,9 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "slowmode",
-    description: "slowmode a specific channel",
-    usage: "m!slowmode",
-    accessableby: "Admins",
+    description: "activate a Slowmode in a specific channel",
+    usage: "slowmode <duration>",
+    accessableby: "MANAGE_CHANNELS",
     aliases: []
 }
 

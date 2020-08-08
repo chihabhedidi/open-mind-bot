@@ -30,8 +30,8 @@ module.exports.run = async (bot, message, args) => {
 }
 module.exports.config = {
     name: "setprefix",
-    description: "change the prefix of the bot",
-    usage: "m!setprefix",
+    description: "Setprefix For Open Mind in your server",
+    usage: "setprefix",
     accessableby: "Admins",
     aliases: []
 }

@@ -4,7 +4,7 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-if(!message.member.hasPermission('ADMINISTRATOR'))
+if(!message.member.hasPermission('BAN_MEMBERS'))
     return message.channel.send("You don't have permission to use that command.");
   const member = args[0];
 
@@ -27,8 +27,8 @@ if(!message.member.hasPermission('ADMINISTRATOR'))
 
 module.exports.config = {
     name: "unban",
-    description: "unban users",
-    usage: "m!unban",
-    accessableby: "Admins",
+    description: "Unban A specific member from a server",
+    usage: "unban: [user-id]",
+    accessableby: "BAN_MEMBERS",
     aliases: []
 }

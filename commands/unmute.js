@@ -5,7 +5,7 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('ADMINISTRATOR'))
+    if(!message.member.hasPermission('MANAGE_ROLE'))
     return message.channel.send("You don't have permission to use that command.");
     const user = message.mentions.users.first();    
     if(user) {
@@ -27,8 +27,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "unmute",
-    description: "unMute members",
-    usage: "m!unmute",
-    accessableby: "Admins",
+    description: "Unmute A specific member from a server",
+    usage: "unmute [Mention] ",
+    accessableby: " MANAGE_MESSAGES / MANAGE_ROLE",
     aliases: []
 }

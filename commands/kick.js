@@ -4,7 +4,7 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission('KICK_MEMBERS'))
-    return message.channel.send("You don't have permission to use that command.");
+    return message.channel.send("You don't have permission to KICK_MEMBERS use this command.");
 else {
     const user = message.mentions.users.first();
 if(user) {
@@ -28,9 +28,9 @@ if(user) {
 
 module.exports.config = {
     name: "kick",
-    description: "Kicks a user",
-    usage: "m!kick",
-    accessableby: "Admins",
+    description: "Kick A specific member from a server",
+    usage: "kick [Mention]",
+    accessableby: "KICK_MEMBERS",
     aliases: []
 }
 

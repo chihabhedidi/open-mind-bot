@@ -3,8 +3,8 @@ const botconfig = require("../botsettings.json");
 const db = require("quick.db")
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission("ADMINISTRATOR")) {
-        return message.channel.send("Yopu should have admin perms to use this command")
+    if(!message.member.hasPermission(" MANAGE_SERVER")) {
+        return message.channel.send("You should have  MANAGE_SERVER perms to use this command")
       }
       
       const user = message.mentions.members.first()
@@ -32,8 +32,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "reset-warnings",
-    description: "rest the number of warns of a members",
-    usage: "m!reset-warnings",
-    accessableby: "Admins",
+    description: "Rest the number of warns of Member Specified by the User",
+    usage: "reset-warnings [Mention]",
+    accessableby: "MANAGE_SERVER",
     aliases: []
 }

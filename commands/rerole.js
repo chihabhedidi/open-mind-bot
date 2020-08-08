@@ -3,8 +3,7 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('ADMINISTRATOR'))
-    return message.channel.send("You don't have permission to use that command.");
+    
 
     if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You do not have permission to rerol giveaways');
 
@@ -35,8 +34,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "rerole",
-    description: "rerole a giveaway",
-    usage: "m!rerole",
-    accessableby: "Admins",
+    description: "Rerole To pick another winner",
+    usage: "rerole [giveaway message id]",
+    accessableby: "MANAGE_MESSAGES",
     aliases: []
 }

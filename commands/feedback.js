@@ -15,9 +15,9 @@ await message.channel.send(embed)
 }
 module.exports.config = {
     name: "feedback",
-    description: "to contact the developer",
-    usage: "m!feedback",
-    accessableby: "Members",
+    description: "To contact the developer",
+    usage: "feedback",
+    accessableby: "Public Usage",
     aliases: []
 }
 

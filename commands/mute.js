@@ -6,7 +6,7 @@ const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
     
-  if(!message.member.hasPermission('ADMINISTRATOR'))
+  if(!message.member.hasPermission('MANAGE_ROLES'))
   return message.channel.send("You don't have permission to use that command.");
   const user = message.mentions.users.first();
   if(user) {
@@ -59,8 +59,8 @@ message.channel.send(`${member} has been unmuted!`);
 
 module.exports.config = {
     name: "mute",
-    description: "Mute members",
-    usage: "m!mute",
-    accessableby: "Admins",
+    description: "Mute A specific member from a server",
+    usage: "mute [Mention] <Reason> <time>",
+    accessableby: "MANAGE_MESSAGES / MANAGE_ROLES",
     aliases: []
 }
