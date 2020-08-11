@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":warning:** - \`warnings\`**",
-                value: `**Warnings**  view the number of warns of a specific member`,
+                value: `**Warnings**  view the number of warns`,
                 inline: true
             },
             {
@@ -62,6 +62,11 @@ module.exports.run = async (bot, message, args) => {
             {
                 name: ":speaking_head:** - \`unmute\`**",
                 value: `**Unmute** A specific member from a server`,
+                inline: true
+            },
+            {
+                name: ":bust_in_silhouette:** - \`autorole\`**",
+                value: `**Autorole** To give a role to a member when they join your server`,
                 inline: true
             },
             {
@@ -106,6 +111,11 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
+                name: ":face_with_symbols_over_mouth:** - \`antiswear\`**",
+                value: `**Antiswear** To disable bed words in your server`,
+                inline: true
+            },
+            {
                 name: ":wave:** - \`setwelcome\`**",
                 value: `**SetWelcome** Channel for the server`,
                 inline: true
@@ -135,11 +145,7 @@ module.exports.run = async (bot, message, args) => {
                 value: `**Rerole** To pick another winner`,
                 inline: true
             },
-            {
-                name: ":frog:** - \`meme\`**",
-                value: `**meme** To send random meme`,
-                inline: true
-            },
+            
         )
         await message.channel.send(embed2)
     }
@@ -163,6 +169,31 @@ module.exports.run = async (bot, message, args) => {
             
         )
         await message.channel.send(embed3)
+    }
+    if(args[0] === 'fun'){
+        const embed4 = new MessageEmbed()
+        .setThumbnail(bot.user.displayAvatarURL())
+        .setColor('#f3f3f3')
+        .setTitle(`**:confetti_ball: Fun Commands :confetti_ball:**`)
+        .setFooter(`Requested By : ${message.author.tag} • Today at ${time}`)
+        .addFields(
+            {
+                name: ":sun_with_face:** - \`weather\`**",
+                value: `**Weather** To see the weather in a specific location`,
+                inline: true
+            },
+            {
+                name: ":frog:** - \`meme\`**",
+                value: `**meme** To send random meme`,
+                inline: true
+            },
+            {
+                name: ":gun:** - \`snipe\`**",
+                value: `**Snipe** The last deleted message`,
+                inline: true
+            },
+        )
+        await message.channel.send(embed4)
     }
     if(args[0] === 'info'){
         const embed4 = new MessageEmbed()
@@ -205,6 +236,8 @@ module.exports.run = async (bot, message, args) => {
         \`${prefix}help mod\`
          **<:hammer:741235988210253845> Utility CMDs**
         \`${prefix}help util\`
+        **:confetti_ball: fun CMDs**
+        \`${prefix}help fun\`
          **<:info:741237861969559652> info CMDs**
         \`${prefix}help info\`
         **<:earlysupportter:741237858396012604> Support CMDs**
