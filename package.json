@@ -6,6 +6,7 @@
   "author": "GYox",
   "license": "ISC",
   "dependencies": {
+    "canvas-senpai": "0.0.4",
     "common-tags": "^1.8.0",
     "dateformat": "^3.0.3",
     "discord-giveaways": "^4.2.1",
@@ -18,6 +19,7 @@
     "quick.db": "^7.1.1",
     "random-puppy": "^1.1.0",
     "timestamp": "0.0.1",
-    "util": "^0.12.3"
+    "util": "^0.12.3",
+    "weather-js": "^2.0.0"
   }
 }
