@@ -106,7 +106,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":triangular_flag_on_post:** - \`setprefix\`**",
-                value: `**Setprefix** For Open Mind in your server,Forget the prefix? type \`prefix\``,
+                value: `**Setprefix** For Open Mind in your server,Forget the prefix? mention the bot`,
                 inline: true
             },
             {

@@ -13,6 +13,7 @@
     "discord-giveaways": "^4.2.1",
     "discord.js": "^12.2.0",
     "fs": "0.0.1-security",
+	"dblapi.js": "^2.4.1",
     "glob": "^7.1.6",
     "join": "^3.0.0",
     "math": "0.0.3",

@@ -5,11 +5,20 @@ const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
 const { badwords } = require("./data.json") 
 const db = require("quick.db");
+const DBL = require("dblapi.js");
+const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczMTMxNTc1NDE3NTAzNzQ4MCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTk3ODYwMzAxfQ.4Zht1A6PJbUGFVyKoHGZ2bq2ujOhgGB3u0P0btNVLEg', bot);
+
 const mongoose = require('mongoose');
 const Guild =require('./models/guild');
 const User =require('./models/user');
 bot.mongoose = require('./util/mongoose');
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
 
+dbl.on('error', e => {
+ console.log(`Oops! ${e}`);
+})
 bot.on("ready", () => {
   function randomStatus() {
     let status = [`${bot.guilds.cache.size} Servers`, "m!help", `${bot.users.cache.size} Users`] // You can change it whatever you want.
@@ -158,6 +167,8 @@ newUser.save()
   
   
   if(settings.prefix === null ) settings.prefix = botsettings.default_prefix;
+ if(message.content.startsWith("<@!731315754175037480>")) 
+  return message.channel.send(`the prefix for ${message.guild.name} is \`${settings.prefix}\``);
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
