@@ -301,7 +301,7 @@ module.exports.run = async (bot, message, args) => {
          **<:hammer:741235988210253845> Utility CMDs**
         \`${settings.prefix}help util\`
         **:speech_balloon: Leveling CMDs**
-        \`${settings.prefix}help leveling\`
+        \`${settings.prefix}help level\`
         **:moneybag: Economy CMDs**
         \`${settings.prefix}help economy\`
         **:confetti_ball: fun CMDs**
