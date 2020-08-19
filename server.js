@@ -5,6 +5,10 @@ const { GiveawaysManager } = require('discord-giveaways');
 const bot = new Discord.Client({disableEveryone: true});
 const { badwords } = require("./data.json") 
 const db = require("quick.db");
+const mongoose = require('mongoose');
+const Guild =require('./models/guild');
+const User =require('./models/user');
+bot.mongoose = require('./util/mongoose');
 
 bot.on("ready", () => {
   function randomStatus() {
@@ -20,65 +24,34 @@ bot.on("ready", () => {
   
   
 })
-bot.on("guildMemberAdd", async member => { //usage of welcome event
-  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
-  let msg=db.get(`msg_${member.guild.id}`);
-  let role=db.get(`autorole_${member.guild.id}`);
-  if(msg===null){
-    msg=`We are very happy to have you in our server`;
-  }
-    if(chx != null && role!=null) { //check if var have value or not
-      member.roles.add(role);
-      let wembed = new Discord.MessageEmbed() //define embed
-  .setAuthor(member.user.username, member.user.avatarURL())
-  .setColor("RANDOM")
-  .setThumbnail(member.user.avatarURL())
-  .setDescription(msg);
-  
-  bot.channels.cache.get(chx).send(wembed) //get channel and send embed
-    }
-    if(chx===null && role===null){
-      return;
-    }
-    if(chx === null&&role!=null) { //check if var have value or not
-      member.roles.add(role);
-    }
-    if(chx!=null && role===null){
-      let wembed = new Discord.MessageEmbed() //define embed
-  .setAuthor(member.user.username, member.user.avatarURL())
-  .setColor("RANDOM")
-  .setThumbnail(member.user.avatarURL())
-  .setDescription(msg);
-  
-  bot.channels.cache.get(chx).send(wembed) //get channel and send embed
-    }
-    
-
-})
-bot.on("guildMemberRemove", async member  => { //usage of welcome event
-
-  let chx1 = db.get(`leavechannel_${member.guild.id}`); //defining var
-
-   if(chx1 === null) { //check if var have value or not
-      return;
-    }
-  
-
-  let wembed = new Discord.MessageEmbed() //define embed
-  .setAuthor(member.user.username, member.user.avatarURL())
-  .setColor("RANDOM")
-  .setThumbnail(member.user.avatarURL())
-  .setDescription(`we hope to see you again in our server`);
-  
-  bot.channels.cache.get(chx1).send(wembed) //get channel and send embed
-  
-})
 
 
 
 bot.on("message", async message  => { 
-  let e=db.get(`as_${message.guild.id}`);
- if(e==1){
+  let settings = await Guild.findOne({
+    guildID: message.guild.id
+  })
+ if(settings.antiswear=="on"){
+    let confirm = false;
+  var i;
+  for(i = 0;i < badwords.length; i++) {
+    
+    if(message.content.toLowerCase().includes(badwords[i].toLowerCase()))
+      confirm = true;
+    
+  }
+  if(confirm) {
+      message.delete()
+      return message.channel.send("You are not allowed to send badwords here")
+    }    }
+  
+})
+
+bot.on("message", async message  => { 
+  let settings = await Guild.findOne({
+    guildID: message.guild.id
+  })
+ if(settings.antiswear=="on"){
     let confirm = false;
   var i;
   for(i = 0;i < badwords.length; i++) {
@@ -98,6 +71,7 @@ require("./util/eventHandler")(bot)
 
 const fs = require("fs");
 const { isNull } = require('util');
+const { settings } = require('cluster');
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
@@ -139,23 +113,62 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 bot.on("message", async message => {
+  if(message.author.bot) return;
+  let ss = await User.findOne({
+    userID: message.member.id
+}, (err, user) => {
+    if (err) console.error(err)
+    if (!user) {
+const  newUser =new User({
+    _id: mongoose.Types.ObjectId(),
+    userID: message.member.id,
+    username: message.member.user.tag
+    
+})
+
+newUser.save()
+.catch(err => console.error(err));
+}
+})
+  let settings = await Guild.findOne({
+    guildID: message.guild.id
+  }, (err, guild) => {
+    if (err) console.error(err)
+    if (!guild) {
+        const newGuild = new Guild({
+            _id: mongoose.Types.ObjectId(),
+            guildID: message.guild.id,
+            guildName: message.guild.name,
+            prefix: botsettings.default_prefix,
+            Autorole: botsettings.default_Autorole,
+            welcome_channel: botsettings.default_welcome_channel,
+            welcome_message: botsettings.default_welcome_message,
+            leave_channel: botsettings.default_leave_channel
+        })
+  
+        newGuild.save()
+        .then(g => console.log(`I have joined -> ${g.guildName}`))
+        .catch(err => console.error(err));
+  
+    }
+  });
   if(message.author.bot || message.channel.type === "dm") return;
 
   if(!message.guild) return;
-  let prefix = db.get(`prefix_${message.guild.id}`)
   
-  if(prefix === null ) prefix = botsettings.default_prefix;
+  
+  if(settings.prefix === null ) settings.prefix = botsettings.default_prefix;
   if(message.content.startsWith("prefix")) 
-  return message.channel.send(`the prefix for ${message.guild.name} is \`${prefix}\``);
+  return message.channel.send(`the prefix for ${message.guild.name} is \`${settings.prefix}\``);
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if(!message.content.startsWith(prefix)) return;
-  let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
+  if(!message.content.startsWith(settings.prefix)) return;
+  let commandfile = bot.commands.get(cmd.slice(settings.prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(settings.prefix.length)))
   if(commandfile){ commandfile.run(bot,message,args)}
 
 
 })
-
+bot.mongoose.init();
 bot.login(process.env.token);

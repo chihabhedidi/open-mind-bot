@@ -2,11 +2,15 @@
 const db = require("quick.db")
 const botsettings = require('../botsettings.json');
 const { MessageEmbed } = require('discord.js');
+const mongoose = require('mongoose');
+const Guild =require('../models/guild');
 var today = new Date();
 var time = today.getHours() + ":" + today.getMinutes();
 module.exports.run = async (bot, message, args) => {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if(prefix === null ) prefix = botsettings.default_prefix;
+    let settings = await Guild.findOne({
+        guildID: message.guild.id
+    })
+    if(settings.prefix === null ) settings.prefix = botsettings.default_prefix;
     if(args[0] === 'mod'){
         const embed1 = new MessageEmbed()
         .setThumbnail(bot.user.displayAvatarURL())
@@ -170,6 +174,62 @@ module.exports.run = async (bot, message, args) => {
         )
         await message.channel.send(embed3)
     }
+    if(args[0] === 'economy'){
+        const embed5 = new MessageEmbed()
+        .setThumbnail(bot.user.displayAvatarURL())
+        .setColor('#f3f3f3')
+        .setTitle(`**:moneybag: Economy Commands :moneybag:**`)
+        .setFooter(`Requested By : ${message.author.tag} • Today at ${time}`)
+        .addFields(
+            {
+                name: ":hourglass:** - \`daily\`**",
+                value: `**Daily** To get your daily reward`,
+                inline: true
+            },
+            {
+                name: ":money_with_wings:** - \`credit\`**",
+                value: `**credit** to see your or someone\'s credit`,
+                inline: true
+            },
+            {
+                name: ":money_mouth:** - \`credit <@member> amount\`**",
+                value: `**credit** To send money to an other member`,
+                inline: true
+            },
+        )
+        await message.channel.send(embed5)
+    }
+    if(args[0] === 'level'){
+        const embed4 = new MessageEmbed()
+        .setThumbnail(bot.user.displayAvatarURL())
+        .setColor('#f3f3f3')
+        .setTitle(`**:speech_balloon: Leveling Commands :speech_balloon:**`)
+        .setFooter(`Requested By : ${message.author.tag} • Today at ${time}`)
+        .addFields(
+            {
+                name: ":bust_in_silhouette:** - \`profile\`**",
+                value: `**Profile** To se your level`,
+                inline: true
+            },
+            {
+                name: ":keyboard:** - \`Leveling enable/disable\`**",
+                value: `**Leveling** To enable/disable the leveling in your server(it is disable by default in all servers) `,
+                inline: true
+            },
+            {
+                name: ":ok_hand::** - \`Leveling channel [#channel]\`**",
+                value: `**Leveling** To set a channel for leveling messages `,
+                inline: true
+            },
+            {
+                name: ":keyboard:** - \`Leaderboard\`**",
+                value: `**Leaderboard** To see top members in leveling in your server `,
+                inline: true
+            },
+            
+        )
+        await message.channel.send(embed4)
+    }
     if(args[0] === 'fun'){
         const embed4 = new MessageEmbed()
         .setThumbnail(bot.user.displayAvatarURL())
@@ -231,17 +291,25 @@ module.exports.run = async (bot, message, args) => {
     const embed = new MessageEmbed()
         .setThumbnail(bot.user.displayAvatarURL())
         .setColor('#f3f3f3')
-        .setTitle(`**${message.guild.name} prefix is \`${prefix}\`**`)
-        .setDescription(`**<:om:741239844117938236> Moderation CMDs**
-        \`${prefix}help mod\`
+        .setTitle(`**${message.guild.name} prefix is \`${settings.prefix}\`**`)
+        .setDescription(`
+        **Command Help:** To get info on commands run \`${settings.prefix}help <command name>\`.
+        **Panel:** To get info about your server activities run \`${settings.prefix}panel\`
+
+        **<:om:741239844117938236> Moderation CMDs**
+        \`${settings.prefix}help mod\`
          **<:hammer:741235988210253845> Utility CMDs**
-        \`${prefix}help util\`
+        \`${settings.prefix}help util\`
+        **:speech_balloon: Leveling CMDs**
+        \`${settings.prefix}help leveling\`
+        **:moneybag: Economy CMDs**
+        \`${settings.prefix}help economy\`
         **:confetti_ball: fun CMDs**
-        \`${prefix}help fun\`
+        \`${settings.prefix}help fun\`
          **<:info:741237861969559652> info CMDs**
-        \`${prefix}help info\`
+        \`${settings.prefix}help info\`
         **<:earlysupportter:741237858396012604> Support CMDs**
-        \`${prefix}help support\``)
+        \`${settings.prefix}help support\``)
         .setFooter(`Requested By : ${message.author.tag} • Today at ${time}`)
     await message.channel.send(embed)
 }
@@ -261,7 +329,7 @@ if(args[0]) {
             },
             {
                 name: "**Command's Usage:**",
-                value: `⤿${prefix} ${command.config.usage }`,
+                value: `⤿${settings.prefix} ${command.config.usage }`,
                 inline: true
             },
             {

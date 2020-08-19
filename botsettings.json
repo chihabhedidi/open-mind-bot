@@ -1,4 +1,11 @@
 {
     "token": "NzMxMzE1NzU0MTc1MDM3NDgw.XxOPQA.jYf6q2_-dDOncLcwDyyQyik2uWk",
-    "default_prefix": "m!"
+    "default_prefix": "m!",
+    "default_Autorole":"null",
+    "default_antiswear":"null",
+    "default_welcome_channel":"null",
+    "default_welcome_message":"We are very happy to have you in our server",
+    "default_leave_channel":"null",
+    "default_leveling_channel":"null"
+
 }
