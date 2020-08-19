@@ -5,6 +5,9 @@
   "main": "server.js",
   "author": "GYox",
   "license": "ISC",
+  "engines": {
+    "node": "13.9.0"
+  }
   "dependencies": {
     "canvas": "^2.6.1",
     "canvas-senpai": "0.0.4",
