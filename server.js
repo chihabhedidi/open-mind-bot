@@ -158,8 +158,6 @@ newUser.save()
   
   
   if(settings.prefix === null ) settings.prefix = botsettings.default_prefix;
-  if(message.content.startsWith("prefix")) 
-  return message.channel.send(`the prefix for ${message.guild.name} is \`${settings.prefix}\``);
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
