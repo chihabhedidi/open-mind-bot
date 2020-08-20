@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
 
     let status;

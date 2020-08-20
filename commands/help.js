@@ -7,6 +7,7 @@ const Guild =require('../models/guild');
 var today = new Date();
 var time = today.getHours() + ":" + today.getMinutes();
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     let settings = await Guild.findOne({
         guildID: message.guild.id
     })
@@ -116,7 +117,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":face_with_symbols_over_mouth:** - \`antiswear\`**",
-                value: `**Antiswear** To disable bed words in your server`,
+                value: `**Antiswear** To disable bad words in your server`,
                 inline: true
             },
             {

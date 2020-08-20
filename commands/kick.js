@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     if(!message.member.hasPermission('KICK_MEMBERS'))
     return message.channel.send("You don't have permission to KICK_MEMBERS use this command.");
 else {

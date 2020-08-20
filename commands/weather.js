@@ -3,7 +3,7 @@ const botconfig = require("../botsettings.json");
 const weather = require('weather-js');
 
 module.exports.run = async (bot, message, args) => {
-   
+  if(message.author.bot) return;
       weather.find({search: args.join(" "), degreeType: 'C'}, function (error, result){
         if(error) return message.channel.send(error);
         if(!args[0]) {

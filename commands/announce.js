@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+  if(message.author.bot) return;
     if(!message.member.hasPermission('SEND_MESSAGES'))
     return message.channel.send("You don't have permission SEND_MESSAGES to use this command.");
     let rChannel = message.mentions.channels.first();

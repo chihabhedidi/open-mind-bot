@@ -5,7 +5,7 @@ const os = require('os')
 
 
 module.exports.run = async (bot, message, args) => {
-
+    if(message.author.bot) return;
     const embed = new MessageEmbed()
     .setThumbnail(bot.user.displayAvatarURL())
     .setTitle('Bot Stats')

@@ -4,7 +4,7 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     
-
+    if(message.author.bot) return;
     if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You do not have permission to rerol giveaways');
 
     if(!args[0]) return message.channel.send('No giveaway ID provided');

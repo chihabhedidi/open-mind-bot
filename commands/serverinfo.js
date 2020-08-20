@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     let region;
     switch (message.guild.region) {
         case "europe":

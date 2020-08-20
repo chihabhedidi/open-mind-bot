@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const Guild =require('../models/guild');
 
 module.exports.run = async (bot, message, args) => {
+  if(message.author.bot) return;
     if(!message.member.hasPermission("MANAGE_MESSAGES")) {
         return message.channel.send("You should have MANAGE_MESSAGES perms to use this command")
       }

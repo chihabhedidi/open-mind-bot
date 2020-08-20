@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js')
 
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     const embed = new MessageEmbed()
     .setThumbnail('https://cdn.discordapp.com/avatars/219779965967663104/a_95edb470cf11cc3e2b8f643da93ea283.png')
     .setTitle('Contact the Developer on Discord')

@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const db = require("quick.db")
 
 module.exports.run = async (bot, message, args) => {
+  if(message.author.bot) return;
     if(!message.member.hasPermission("MANAGE_MESSAGES")) {
         return message.channel.send("You should have MANAGE_MESSAGES permsission to use this command!")
       }

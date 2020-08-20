@@ -3,7 +3,7 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
 
-   
+    if(message.author.bot) return;
     if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("you dont have the permission")
     if(!message.guild.me.hasPermission("MANAGE_ROLES")) return message.channel.send("i dont have the permission")
     let aMember = message.mentions.members.first()

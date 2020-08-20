@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply("you dont have the permission");
 
     let t = message.content;

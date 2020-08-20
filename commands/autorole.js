@@ -5,6 +5,7 @@ const db = require("quick.db")
 
 
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     if(!message.member.hasPermission('MANAGE_SERVER'))
     return message.channel.send("You don't have permission to use that command.");
     const settings = await Guild.findOne({

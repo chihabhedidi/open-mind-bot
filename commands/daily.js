@@ -5,7 +5,7 @@ const db = require("quick.db")
 
 
 module.exports.run = async (bot, message, args) => {
- 
+    if(message.author.bot) return;
   const settings = await User.findOne({
     userID: message.member.id
 });

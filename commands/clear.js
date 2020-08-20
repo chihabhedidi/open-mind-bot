@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 
 module.exports.run = async (client, message, args) => {
-            
+    if(message.author.bot) return;
     if (message.deletable) {
         message.delete();
     }

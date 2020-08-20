@@ -5,6 +5,7 @@ const ms = require("ms");
 
 
 module.exports.run = async (bot, message, args) => {
+  if(message.author.bot) return;
     
   if(!message.member.hasPermission('MANAGE_ROLES'))
   return message.channel.send("You don't have permission to use that command.");

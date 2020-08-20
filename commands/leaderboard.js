@@ -5,7 +5,7 @@ const db = require("quick.db")
 const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
- 
+    if(message.author.bot) return;
 const data = await member
     .find({ guildID: message.channel.guild.id })
     .sort({ xp: -1 })

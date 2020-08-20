@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
+  if(message.author.bot) return;
     if(!message.member.hasPermission('MANAGE_CHANNELS'))
     return message.channel.send("You don't have permission MANAGE_CHANNELS to use this command.");
    
