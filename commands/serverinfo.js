@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+﻿const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js');
 
@@ -28,9 +28,9 @@ module.exports.run = async (bot, message, args) => {
         .setColor('#f3f3f3')
         .setTitle(`${message.guild.name} server stats`)
         .addFields(
-            {
+           {
                 name: "Owner: ",
-                value: message.guild.owner.user.tag,
+                value:` <@${message.guild.owner.user.id}>`,
                 inline: true
             },
             {
@@ -40,12 +40,12 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: "Members Online: ",
-                value: `There are ${message.guild.members.cache.filter(m => m.user.presence.status == "online").size} users online!`,
+                value: `There are ${members.filter(member => !member.user.bot).size} users !`,
                 inline: true
             },
             {
                 name: "Total Bots: ",
-                value: `There are ${message.guild.members.cache.filter(m => m.user.bot).size} bots!`,
+                value: `There are ${members.filter(member => member.user.bot).size} bots!`,
                 inline: true
             },
             {
