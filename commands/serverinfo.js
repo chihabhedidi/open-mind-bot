@@ -38,14 +38,14 @@ module.exports.run = async (bot, message, args) => {
                 value: `There are ${message.guild.memberCount} users!`,
                 inline: true
             },
-            {
+           {
                 name: "Members Online: ",
-                value: `There are ${members.filter(member => !member.user.bot).size} users !`,
+                value: `There are ${message.guild.members.cache.filter(m => m.user.presence.status == "online").size} users online!`,
                 inline: true
             },
             {
                 name: "Total Bots: ",
-                value: `There are ${members.filter(member => member.user.bot).size} bots!`,
+                value: `There are ${message.guild.members.cache.filter(m => m.user.bot).size} bots!`,
                 inline: true
             },
             {
