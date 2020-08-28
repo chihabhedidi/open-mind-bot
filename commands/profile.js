@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
     const Brilliance=await loadImage(join(__dirname, "..","img","Brilliance.png"));
     const BugHunter=await loadImage(join(__dirname, "..","img","BugHunter.png"));
     const BugHunterv2=await loadImage(join(__dirname, "..","img","BugHunterv2.png"));
-    const de=await loadImage(join(__dirname, "..","img","de.png"));
+    const de=await loadImage(join(__dirname, "..","img","des.png"));
     const es=await loadImage(join(__dirname, "..","img","es.png"));
     const he=await loadImage(join(__dirname, "..","img","he.png"));
     const partner=await loadImage(join(__dirname, "..","img","partner.png"));
@@ -94,7 +94,7 @@ const Bravery=await loadImage(join(__dirname, "..","img","Bravery.png"));
 const Brilliance=await loadImage(join(__dirname, "..","img","Brilliance.png"));
 const BugHunter=await loadImage(join(__dirname, "..","img","BugHunter.png"));
 const BugHunterv2=await loadImage(join(__dirname, "..","img","BugHunterv2.png"));
-const de=await loadImage(join(__dirname, "..","img","de.png"));
+const de=await loadImage(join(__dirname, "..","img","des.png"));
 const es=await loadImage(join(__dirname, "..","img","es.png"));
 const he=await loadImage(join(__dirname, "..","img","he.png"));
 const partner=await loadImage(join(__dirname, "..","img","partner.png"));
