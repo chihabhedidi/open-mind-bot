@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
         
         {
         name:"Invite the bot to your server",
-        value: "[**Invite**](https://discord.com/api/oauth2/authorize?client_id=731315754175037480&permissions=8&scope=bot)"
+        value: "[**Here**](https://discord.com/api/oauth2/authorize?client_id=731315754175037480&permissions=8&scope=bot)"
         },
     )
     .setColor('#fc0b03')
