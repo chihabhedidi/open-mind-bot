@@ -7,7 +7,6 @@ const Guild =require('../models/guild');
 var today = new Date();
 var time = today.getHours() + ":" + today.getMinutes();
 module.exports.run = async (bot, message, args) => {
-    if(message.author.bot) return;
     let settings = await Guild.findOne({
         guildID: message.guild.id
     })
@@ -107,7 +106,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":triangular_flag_on_post:** - \`setprefix\`**",
-                value: `**Setprefix** For Open Mind in your server,Forget the prefix? mention the bot`,
+                value: `**Setprefix** For Open Mind in your server,Forget the prefix? type \`prefix\``,
                 inline: true
             },
             {
@@ -117,7 +116,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":face_with_symbols_over_mouth:** - \`antiswear\`**",
-                value: `**Antiswear** To disable bad words in your server`,
+                value: `**Antiswear** To disable bed words in your server`,
                 inline: true
             },
             {
@@ -253,6 +252,16 @@ module.exports.run = async (bot, message, args) => {
                 value: `**Snipe** The last deleted message`,
                 inline: true
             },
+            {
+                name: ":frame_photo:** - \`avatar\`**",
+                value: `**Avatar** To display your/someone\`s avatar`,
+                inline: true
+            },
+            {
+                name: ":speak_no_evil:** - \`say\`**",
+                value: `**Says** A message inputted`,
+                inline: true
+            },
         )
         await message.channel.send(embed4)
     }
@@ -302,7 +311,7 @@ module.exports.run = async (bot, message, args) => {
          **<:hammer:741235988210253845> Utility CMDs**
         \`${settings.prefix}help util\`
         **:speech_balloon: Leveling CMDs**
-        \`${settings.prefix}help level\`
+        \`${settings.prefix}help leveling\`
         **:moneybag: Economy CMDs**
         \`${settings.prefix}help economy\`
         **:confetti_ball: fun CMDs**
