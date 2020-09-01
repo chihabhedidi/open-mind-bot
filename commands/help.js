@@ -253,6 +253,11 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
+                name: ":regional_indicator_x::o2:** - \`xo\`**",
+                value: `**Xo** To start xo game`,
+                inline: true
+            },
+            {
                 name: ":frame_photo:** - \`avatar\`**",
                 value: `**Avatar** To display your/someone\`s avatar`,
                 inline: true
