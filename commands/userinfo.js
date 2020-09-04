@@ -1,4 +1,4 @@
-﻿cconst {createCanvas, loadImage} = require("canvas");
+﻿const {createCanvas, loadImage} = require("canvas");
 const { MessageAttachment } = require("discord.js");
 const { join } = require("path");
 const botconfig = require("../botsettings.json");
