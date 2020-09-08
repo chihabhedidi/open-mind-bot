@@ -63,9 +63,9 @@ module.exports = bot => {
           if(settings.welcome_channel != "null" && settings.Autorole!="null") { //check if var have value or not
             member.roles.add(settings.Autorole);
             let wembed = new Discord.MessageEmbed() //define embed
-        .setAuthor(member.username, member.avatarURL())
+        .setAuthor(member.user.username, member.user.avatarURL())
         .setColor("RANDOM")
-        .setThumbnail(member.avatarURL())
+        .setThumbnail(member.user.avatarURL())
         .setDescription(`${settings.welcome_message}`);
         
         bot.channels.cache.get(settings.welcome_channel).send(wembed) //get channel and send embed
@@ -78,9 +78,9 @@ module.exports = bot => {
           }
           if(settings.welcome_channel!="null" && settings.Autorole==="null"){
             let wembed = new Discord.MessageEmbed() //define embed
-        .setAuthor(member.username, member.avatarURL())
+        .setAuthor(member.user.username, member.user.avatarURL())
         .setColor("RANDOM")
-        .setThumbnail(member.avatarURL())
+        .setThumbnail(member.user.avatarURL())
         .setDescription(`${settings.welcome_message}`);
         
         bot.channels.cache.get(settings.welcome_channel).send(wembed) //get channel and send embed
