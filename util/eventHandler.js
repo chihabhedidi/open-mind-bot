@@ -38,7 +38,7 @@ module.exports = bot => {
 
       });
       bot.on("guildMemberAdd", async member => {
-        if(member.author.bot) return;
+        if(member.bot) return;
         let ss = await User.findOne({
             userID: member.id
         }, (err, user) => {
