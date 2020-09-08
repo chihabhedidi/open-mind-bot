@@ -10,6 +10,7 @@ module.exports.run = async (bot, message, args) => {
 
     const member = message.mentions.users.first();
     if(!member)return message.reply("**Mention someone to play with him..**");
+    if(member.bot)return message.reply("**Bots cant play this game**");
     if(member.id==message.author.id)return message.reply("**Dont mention your self**");
     
         
@@ -49,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "xo",
-    description: "xo game",
+    description: "tictactoe game",
     usage: "xo <@mention>",
     accessableby: "PUBLIC_USAGE",
     aliases: []
