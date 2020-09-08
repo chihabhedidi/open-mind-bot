@@ -21,7 +21,14 @@ return message.channel.send(`**:x: | You can get your daily reward after ( \`${M
         balance: settings.balance + amount,
         daily : (Date.now() )
     });
-    message.channel.send(`**:moneybag: | You got \`$${amount}\` money!!**`);
+    const embed = new Discord.MessageEmbed()
+    .setTitle("Your daily reward")
+    .setThumbnail("https://media.giphy.com/media/3ohjV1wV5q38uFVjG0/giphy.gif")
+    .setDescription (`**:money_with_wings: |You got \`$${amount}\` money!!**`)
+    .setTimestamp()
+    .setColor('#4c9130')
+    message.channel.send(embed)
+ 
 
  }
 }
