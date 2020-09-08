@@ -329,9 +329,11 @@ module.exports.run = async (bot, message, args) => {
          **<:info:741237861969559652> info CMDs**
         \`${settings.prefix}help info\`
         **<:earlysupportter:741237858396012604> Support CMDs**
-        \`${settings.prefix}help support\``)
+        \`${settings.prefix}help support\`
+
+        [**Support Server**](https://discord.com/invite/AXnRXeS)`)
     
-        [**Support Server**](https://discord.com/invite/AXnRXeS)
+        
         .setFooter(`Requested By : ${message.author.tag}`)
     await message.channel.send(embed)
 }
