@@ -259,7 +259,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":regional_indicator_x::o2:** - \`xo\`**",
-                value: `**Xo** To start xo game`,
+                value: `**Xo** To start tictactoe game`,
                 inline: true
             },
             {
@@ -330,7 +330,9 @@ module.exports.run = async (bot, message, args) => {
         \`${settings.prefix}help info\`
         **<:earlysupportter:741237858396012604> Support CMDs**
         \`${settings.prefix}help support\``)
-        .setFooter(`Requested By : ${message.author.tag} • Today at ${time}`)
+    
+        [**Support Server**](https://discord.com/invite/AXnRXeS)
+        .setFooter(`Requested By : ${message.author.tag}`)
     await message.channel.send(embed)
 }
 if(args[0]) {
