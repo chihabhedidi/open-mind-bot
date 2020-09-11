@@ -1,9 +1,20 @@
-﻿const Discord = require("discord.js")
+const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js');
-
+const moment = require('moment');
 module.exports.run = async (bot, message, args) => {
-    if(message.author.bot) return;
+    const filterLevels = {
+        DISABLED: 'Off',
+        MEMBERS_WITHOUT_ROLES: 'No Role',
+        ALL_MEMBERS: 'Everyone'
+    };
+    const verificationLevels = {
+        NONE: 'None',
+        LOW: 'Low',
+        MEDIUM: 'Medium',
+        HIGH: 'High',
+        VERY_HIGH: 'Highest'
+    };
     let region;
     switch (message.guild.region) {
         case "europe":
@@ -23,63 +34,24 @@ module.exports.run = async (bot, message, args) => {
             break;
     }
 
-    const embed = new MessageEmbed()
-        .setThumbnail(message.guild.iconURL({dynamic : true}))
-        .setColor('#f3f3f3')
-        .setTitle(`${message.guild.name} server stats`)
-        .addFields(
-           {
-                name: "Owner: ",
-                value:` <@${message.guild.owner.user.id}>`,
-                inline: true
-            },
-            {
-                name: "Members: ",
-                value: `There are ${message.guild.memberCount} users!`,
-                inline: true
-            },
-           {
-                name: "Members Online: ",
-                value: `There are ${message.guild.members.cache.filter(m => m.user.presence.status == "online").size} users online!`,
-                inline: true
-            },
-            {
-                name: "Total Bots: ",
-                value: `There are ${message.guild.members.cache.filter(m => m.user.bot).size} bots!`,
-                inline: true
-            },
-            {
-                name: "Creation Date: ",
-                value: message.guild.createdAt.toLocaleDateString("en-us"),
-                inline: true
-            },
-            {
-                name: "Roles Count: ",
-                value: `There are ${message.guild.roles.cache.size} roles in this server.`,
-                inline: true,
-            },
-            {
-                name: `🗺 Region: `,
-                value: region,
-                inline: true
-            },
-            {
-                name: `Verified: `,
-                value: message.guild.verified ? 'Server is verified' : `Server isn't verified`,
-                inline: true
-            },
-            {
-                name: 'Boosters: ',
-                value: message.guild.premiumSubscriptionCount >= 1 ? `There are ${message.guild.premiumSubscriptionCount} Boosters` : `There are no boosters`,
-                inline: true
-            },
-            {
-                name: "Emojis: ",
-                value: message.guild.emojis.cache.size >= 1 ? `There are ${message.guild.emojis.cache.size} emojis!` : 'There are no emojis' ,
-                inline: true
-            }
-        )
-    await message.channel.send(embed)
+    if (!message.guild.members.cache.has(message.guild.ownerID)) await message.guild.members.fetch(message.guild.ownerID);
+		const embed = new MessageEmbed()
+			.setColor(0x00AE86)
+			.setThumbnail(message.guild.iconURL({ format: 'png' }))
+			.addField('❯ Name', message.guild.name, true)
+			.addField('❯ ID', message.guild.id, true)
+			.addField('❯ Creation Date', moment.utc(message.guild.createdAt).format('MM/DD/YYYY h:mm A'), true)
+			.addField('❯ Owner', message.guild.owner.user.tag, true)
+			.addField('❯ Boost Count', message.guild.premiumSubscriptionCount || 0, true)
+			.addField('❯ Boost Tier', message.guild.premiumTier ? `Tier ${message.guild.premiumTier}` : 'None', true)
+			.addField('❯ 🗺 Region:', region, true)
+			.addField('❯ Explicit Filter', filterLevels[message.guild.explicitContentFilter], true)
+			.addField('❯ Verification Level', verificationLevels[message.guild.verificationLevel], true)
+			.addField('❯ Members', message.guild.memberCount, true)
+			.addField('❯ Roles', message.guild.roles.cache.size, true)
+            .addField('❯ Channels', message.guild.channels.cache.filter(channel => channel.type !== 'category').size, true)
+            .addField('❯ Emojis', message.guild.emojis.cache.size >= 1 ? `There are ${message.guild.emojis.cache.size} emojis!` : 'There are no emojis', true)
+            await message.channel.send(embed)
 }
 
 
@@ -87,8 +59,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "serverinfo",
-    description: "To show information about the server",
+    description: "saw information about the server",
     usage: "serverinfo",
-    accessableby: "Public Usage",
-    aliases: []
+    accessableby: "Members",
+    aliases: ["si"]
 }
