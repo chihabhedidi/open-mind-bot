@@ -19,7 +19,7 @@ if(!message.member.hasPermission('BAN_MEMBERS'))
             })
             await message.channel.send(`${member} has been unbanned!`)
         } catch (e) {
-            return message.channel.send(`An error occured!`)
+            return message.channel.send(`An error occured! ${e.message}`)
         }
 
 
