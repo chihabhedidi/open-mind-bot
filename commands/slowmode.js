@@ -13,11 +13,14 @@ module.exports.run = async (bot, message, args) => {
   if (isNaN(args[0])) return message.channel.send(`That is not a number!`);
   
   
-  
+  try{
   message.channel.setRateLimitPerUser(args[0]);
   message.channel.send(
-    `Set the slowmode of this channel to **${args[0]}**`
-  );
+    `Set the slowmode of this channel to **${args[0]}**`);
+  }catch (err) {
+    return message.reply(`\`${err.message}.!\``);
+
+}
 }
 
 
