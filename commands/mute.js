@@ -32,6 +32,7 @@ module.exports.run = async (bot, message, args) => {
           });
       
   }else{
+    try{
   let reason = args.slice(1).join(" ")
     
   if(!reason) {
@@ -45,7 +46,9 @@ if(member.roles.cache.has(mutedRole.id)){
  
 await(member.roles.add(mutedRole));
 message.channel.send(`${member} has been muted for ${ms(ms(mutetime))}`);
-
+    }catch (err) {
+        return message.reply(`\`${err.message}.!\``);
+    }
 setTimeout(function(){
 member.roles.remove(mutedRole);
 message.channel.send(`${member} has been unmuted!`);
