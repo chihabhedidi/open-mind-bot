@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
       leave_channel: channel1
   });
     
-    message.channel.send(`leave Channel is seted as ${channel1}`) //send success message
+    message.channel.send(`leave Channel is seted as ${channel1} make sure that the bot have the permission to send message in that channel`) //send success message
   
 
 }
