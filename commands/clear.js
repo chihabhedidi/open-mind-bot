@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
     }
 
     message.channel.bulkDelete(deleteAmount, true)
-    .catch(err => message.reply(`Something went wrong... ${err}`));
+    .catch(err => message.reply(`Something went wrong... ${err.message}`));
 
 }
 
