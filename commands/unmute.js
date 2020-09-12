@@ -13,11 +13,14 @@ module.exports.run = async (bot, message, args) => {
         const member = message.guild.member(user);
         if(member){ 
     let mutedRole = message.guild.roles.cache.find(x => x.name === "Muted")
-        
+        try{
         if(mutedRole) {
             member.roles.remove(mutedRole);
             return message.channel.send("User was Successfully Unmuted.");
-        }
+        }}catch (err) {
+    return message.reply(`\`${err.message}.!\``);
+
+}
 }else{
     message.reply("That user isn't in this server!");
 }
