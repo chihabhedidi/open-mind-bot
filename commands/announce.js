@@ -19,12 +19,18 @@ module.exports.run = async (bot, message, args) => {
       
     if (!MSG)
       return message.channel.send(`You did not specify your message to send!`);
+  try{
     const _ = new MessageEmbed()
       .setTitle(`${title}`)
       .setDescription(`${MSG}`)
       .setColor("RANDOM");
     rChannel.send(_);
     message.delete();
+    }
+    catch (err) {
+        return message.reply(`\`${err.message}.!\``);
+
+    }
   }
 
 
