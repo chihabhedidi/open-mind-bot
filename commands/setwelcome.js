@@ -37,7 +37,7 @@ if(args[0]==="disable"){
       welcome_channel: channel
   });
     
-    message.channel.send(`Welcome Channel is  ${channel}`) //send success message
+    message.channel.send(`Welcome Channel is  ${channel} make sure that the bot have permission to send message in that channel`) //send success message
     
 
 }
