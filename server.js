@@ -50,15 +50,17 @@ bot.on("message", async message  => {
       confirm = true;
     
   }
-   try{
-  if(confirm) {
-      message.delete()
-       message.channel.send("You are not allowed to send badwords here")
+   
+   if(confirm) {
+    try{
+     await message.delete()
+      return message.channel.send("You are not allowed to send badwords here")
+    }catch (err) {
+      return message.reply(`\`${err.message}.!\``);
     }  
-   }catch (err) {
-        return message.reply(`\`${err.message}.!\``);
 
-    }
+    } 
+   
  }
   
 })
