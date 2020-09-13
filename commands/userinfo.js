@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
 		const embed = new MessageEmbed()
 			.setThumbnail(user.user.displayAvatarURL({ format: 'png', dynamic: true }))
 			.setAuthor(user.user.tag)
-			.addField('❯ Discord Join Date', moment.utc(user.createdAt).format('MM/DD/YYYY h:mm A'), true)
+			.addField('❯ Discord Join Date',user.user.createdAt.toLocaleDateString("en-us"), true)
 			.addField('❯ 🆔', user.user.id, true)
             .addField('❯ Flags', userFlags.length ? userFlags.map(flag => flags[flag]).join(', ') : 'None')
             .addField('❯ Avatar Link', `[Click Here](${user.user.displayAvatarURL()})`, true)
