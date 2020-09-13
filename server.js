@@ -53,7 +53,7 @@ bot.on("message", async message  => {
    try{
   if(confirm) {
       message.delete()
-      return message.channel.send("You are not allowed to send badwords here")
+       message.channel.send("You are not allowed to send badwords here")
     }  
    }catch (err) {
         return message.reply(`\`${err.message}.!\``);
