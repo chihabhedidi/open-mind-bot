@@ -9,7 +9,7 @@ const db = require("quick.db")
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission("ADMINISTRATOR")) {
+    if(!message.member.hasPermission("MANAGE_GUILD")) {
         return message.channel.send("You are not allowed or do not have permission to change prefix")
       }
 
