@@ -1,17 +1,22 @@
 const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
-const db = require("quick.db")
+const mongoose =require("mongoose");
+const Warning =require('../models/warning');
 
 module.exports.run = async (bot, message, args) => {
-  if(message.author.bot) return;
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-        return message.channel.send("You should have MANAGE_MESSAGES permsission to use this command!")
+  
+    if(!message.member.hasPermission("ADMINISTRATOR")) {
+        return message.channel.send("You should have admin perms to use this command!")
       }
-      
+     
       const user = message.mentions.members.first()
       
        if(!user) {
         return message.channel.send("Please Mention the person to who you want to warn - warn @mention <reaosn>")
+      }
+
+      if(message.member.roles.highest.comparePositionTo(message.mentions.members.first().roles.highest)<0){
+        return message.channel.send("you cant warn a member higher in rank than you ")
       }
       if(message.mentions.users.first().bot) {
         return message.channel.send("You can not warn bots")
@@ -25,23 +30,40 @@ module.exports.run = async (bot, message, args) => {
   if(!reason) {
       return message.channel.send("Please provide reason to warn - warn @mention <reason>")
     }
-    let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
-    if(warnings === 2) {
-        message.mentions.members.first().kick();
-         return message.reply(`Successfully kicked because he/she has 3 warnings ${user.tag}`);      }
-         if(warnings === 4) {
-            message.mentions.members.first().ban();
-             return message.reply(`Successfully banned because he/she has 5 warnings ${user.tag}`);      }
-      if(warnings === null) {
-        db.set(`warnings_${message.guild.id}_${user.id}`, 1)
-        user.send(`You have been warned in **${message.guild.name}** for ${reason}`)
-        await message.channel.send(`You warned **${message.mentions.users.first().username}** for ${reason}`)//DO NOT FORGET TO USE ASYNC FUNCTION
-      }else if(warnings !== null) {
-        db.add(`warnings_${message.guild.id}_${user.id}`, 1)
-       user.send(`You have been warned in **${message.guild.name}** for ${reason}`)
-      await message.channel.send(`You warned **${message.mentions.users.first().username}** for ${reason}`) //DO NOT FORGET TO USE ASYNC FUNCTION
+    let f=0;
+    let warnings = await Warning.findOne({
+      userID: user.id,
+      guildID: message.guild.id
+
+  },async (err, user)  => {
+      if (err) console.error(err)
+      
+        if (!user) {
+          const  newmember =new Warning({
+              _id: mongoose.Types.ObjectId(),
+              userID: message.mentions.members.first().id,
+              guildID: message.guild.id,
+              warnings:1
+  
+              
+          })
+         
+          newmember.save()
+  
+        .catch(err => console.error(err));
+      }
+     if(user){
+f=1
     }
 
+  })
+  if(f==1){
+    await warnings.updateOne({
+      warnings:warnings.warnings +1,
+  });
+
+}
+await message.channel.send(`You warned **${message.mentions.users.first().username}** for ${reason}`)
 }
 
 module.exports.config = {
