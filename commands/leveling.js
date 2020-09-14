@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("you dont have the ADMINISTRATOR permission to use this command");
+    if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply("you dont have the MANAGE_ROLES permission to use this command");
 
     let t = message.content;
     const settings = await Guild.findOne({
