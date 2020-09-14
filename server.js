@@ -2,7 +2,9 @@
 const botsettings = require('./botsettings.json');
 const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client({
+  allowedMentions: { parse: [] }
+});
 const { badwords } = require("./data.json") 
 const db = require("quick.db");
 const DBL = require("dblapi.js");
