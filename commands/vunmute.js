@@ -5,7 +5,6 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    if(message.author.bot) return;
     if(!message.member.hasPermission('MUTE_MEMBERS'))
     return message.channel.send("You don't have permission to use that command.");
     const user = message.mentions.users.first();    
@@ -13,15 +12,20 @@ module.exports.run = async (bot, message, args) => {
         const member = message.guild.member(user);
         if(member){ 
     let mutedRole = message.guild.roles.cache.find(x => x.name === "Voice Mute")
+    if(!mutedRole){return message.channel.send("the server doesnt have a voice Mute role please use vmute command to auto create it")}
         try{
-        if(mutedRole) {
-            member.roles.remove(mutedRole);
-            return message.channel.send("User was Successfully (voice) Unmuted.");
-        } 
-        }catch (err) {
-    return message.reply(`\`${err.message}.!\``);
+            if(member.roles.cache.has(mutedRole.id)){
+                member.roles.remove(mutedRole);
+                return message.channel.send(`${member}was Successfully (voice) Unmuted `);
+               }else
+         {
+            
+            return message.channel.send("user is not voice muted!");
+        }
+    }catch (err) {
+        return message.reply(`\`${err.message}.!\``);
 
-}
+    }
 }else{
     message.reply("That user isn't in this server!");
 }
@@ -29,6 +33,7 @@ module.exports.run = async (bot, message, args) => {
 }else{return message.channel.send("Please  mention member")}
 
 }
+
 
 module.exports.config = {
     name: "vunmute",
