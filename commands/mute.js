@@ -5,7 +5,6 @@ const ms = require("ms");
 
 
 module.exports.run = async (bot, message, args) => {
-  if(message.author.bot) return;
     
   if(!message.member.hasPermission('MANAGE_ROLES'))
   return message.channel.send("You don't have permission to use that command.");
@@ -21,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
         
           data: {
             name: 'Muted',
-            color: 'BLUE', 
+            color: '#000000', 
           }
         })
         
@@ -46,10 +45,9 @@ if(member.roles.cache.has(mutedRole.id)){
  try{
 await(member.roles.add(mutedRole));
 message.channel.send(`${member} has been muted for ${ms(ms(mutetime))}`);
- } catch (err) {
-        return message.reply(`\`${err.message}.!\``);
-    }   
-    
+ }catch (err) {
+  return message.reply(`\`${err.message}.!\``);
+}
 setTimeout(function(){
 member.roles.remove(mutedRole);
 message.channel.send(`${member} has been unmuted!`);
