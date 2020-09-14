@@ -3,13 +3,13 @@ const botconfig = require("../botsettings.json");
 const Guild =require('../models/guild');
 
 module.exports.run = async (bot, message, args) => {
-  if(message.author.bot) return;
     if(!message.member.hasPermission("MANAGE_MESSAGES")) {
         return message.channel.send("You should have MANAGE_MESSAGES perms to use this command")
       }
       const settings = await Guild.findOne({
         guildID: message.guild.id
     });
+    if(!args[0])return message.channel.send("Usage:antiswear enable/disable")
       if(args[0]==="enable"){
         await settings.updateOne({
           antiswear: "on"
