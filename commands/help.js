@@ -199,7 +199,7 @@ module.exports.run = async (bot, message, args) => {
         )
         await message.channel.send(embed5)
     }
-    if(args[0] === 'level'){
+     if(args[0] === 'level'){
         const embed4 = new MessageEmbed()
         .setThumbnail(bot.user.displayAvatarURL())
         .setColor('#f3f3f3')
@@ -217,7 +217,22 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
-                name: ":ok_hand::** - \`Leveling channel [#channel]\`**",
+                name: ":clap:** - \`Leveling roles add\`**",
+                value: `**Leveling roles add** Link a role to a level. Removes another role if given `,
+                inline: true
+            },
+            {
+                name: ":point_up:** - \`Leveling roles remove\`**",
+                value: `**Leveling roles remove** Delete a level association`,
+                inline: true
+            },
+            {
+                name: ":newspaper:** - \`Leveling roles list\`**",
+                value: `**Leveling roles list**  List of level/role associations.`,
+                inline: true
+            },
+            {
+                name: ":ok_hand:** - \`Leveling channel [#channel]\`**",
                 value: `**Leveling** To set a channel for leveling messages `,
                 inline: true
             },
