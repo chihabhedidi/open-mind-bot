@@ -8,6 +8,67 @@ const member = require('../models/member');
 const Leveling = require('../models/leveling');
 module.exports = bot => {
     bot.once("ready", function() {reqEvent("ready") (bot) });
+    bot.on("guildMemberAdd", async member => { //usage of welcome event
+      let f=0;
+      let setting = await Stats.findOne({
+        guildID: member.guild.id
+    },async (err, guild)  => {
+        if (err) console.error(err)
+    if(!guild){
+      f=1
+    }
+    })
+  if(f==1){
+    return
+  }
+      let sguildid = await setting.guildID
+      let tusers = await setting.allusers
+      let membs = await setting.membercount
+      let bots = await setting.botcount
+     
+      
+      const totalsize = member.guild.memberCount;
+      const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
+      const humansize = totalsize - botsize;
+      
+      if(member.guild.id === sguildid) { 
+        member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
+        member.guild.channels.cache.get(membs).setName("Members : " + humansize);
+        member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
+      }
+    })
+    bot.on("guildMemberRemove", async member  => { //usage of welcome event
+      let f1=0;
+      let setting = await Stats.findOne({
+        guildID: member.guild.id
+    },async (err, guild)  => {
+        if (err) console.error(err)
+    if(!guild){
+      f1=1
+    }
+    })
+  if(f1==1){
+    return
+  }
+  let sguildid = await setting.guildID
+  let tusers = await setting.allusers
+  let membs = await setting.membercount
+  let bots = await setting.botcount
+ 
+      const totalsize = member.guild.memberCount;
+      const botsize = member.guild.members.cache.filter(m => m.user.bot).size;
+      const humansize = totalsize - botsize;
+      
+      if(member.guild.id === sguildid) { 
+        member.guild.channels.cache.get(tusers).setName("Total Users : " + member.guild.memberCount);
+        member.guild.channels.cache.get(membs).setName("Members : " + humansize);
+        member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
+      
+      }
+      
+      
+    })
+
     bot.on('guildCreate', async function(guild) {
         const  newGuild ={
           guildID: guild.id,
