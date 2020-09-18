@@ -21,6 +21,7 @@ module.exports = bot => {
   if(f==1){
     return
   }
+        if(setting.guildID!="null"){
       let sguildid = await setting.guildID
       let tusers = await setting.allusers
       let membs = await setting.membercount
@@ -36,6 +37,7 @@ module.exports = bot => {
         member.guild.channels.cache.get(membs).setName("Members : " + humansize);
         member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
       }
+        }
     })
     bot.on("guildMemberRemove", async member  => { //usage of welcome event
       let f1=0;
@@ -49,6 +51,7 @@ module.exports = bot => {
   if(f1==1){
     return
   }
+        if(setting.guildID!="null"){
   let sguildid = await setting.guildID
   let tusers = await setting.allusers
   let membs = await setting.membercount
@@ -65,7 +68,7 @@ module.exports = bot => {
       
       }
       
-      
+        }
     })
 
     bot.on('guildCreate', async function(guild) {
