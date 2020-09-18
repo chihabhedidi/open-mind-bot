@@ -6,6 +6,7 @@ const botsettings = require('../botsettings.json');
 const Discord = require('discord.js');
 const member = require('../models/member');
 const Leveling = require('../models/leveling');
+const Stats =require('../models/stats')
 module.exports = bot => {
     bot.once("ready", function() {reqEvent("ready") (bot) });
     bot.on("guildMemberAdd", async member => { //usage of welcome event
