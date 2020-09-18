@@ -245,6 +245,7 @@ if (  me.rolelevel==Member.level+1){
   
             
           }else{
+              let lf1=0
           message.channel.send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
         
           const me = await Leveling.findOne({
@@ -253,12 +254,12 @@ if (  me.rolelevel==Member.level+1){
         },async (err, level)  => {
 if(level){
 
-lf=1
+lf1=1
 }
 
         });
     
-if(lf==1){
+if(lf1==1){
 if (  me.rolelevel==Member.level+1){
   await message.member.roles.add(me.roletoad)
   if(me.roletoremove!="null"){await message.member.roles.remove(me.roletoremove)}
