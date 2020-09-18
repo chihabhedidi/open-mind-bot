@@ -14,7 +14,6 @@ module.exports = bot => {
       let setting = await Stats.findOne({
         guildID: member.guild.id
     },async (err, guild)  => {
-        if (err) console.error(err)
     if(!guild){
       f=1
     }
@@ -43,7 +42,6 @@ module.exports = bot => {
       let setting = await Stats.findOne({
         guildID: member.guild.id
     },async (err, guild)  => {
-        if (err) console.error(err)
     if(!guild){
       f1=1
     }
