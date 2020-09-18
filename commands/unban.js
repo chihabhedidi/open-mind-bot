@@ -4,26 +4,29 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    if(message.author.bot) return;
-if(!message.member.hasPermission('BAN_MEMBERS'))
+    if(!message.member.hasPermission('ADMINISTRATOR'))
     return message.channel.send("You don't have permission to use that command.");
-  const member = args[0];
-
-        if (!member) {
-             return message.channel.send(`Please enter a id!`)
+  let unbanned = args[0]
+  let member = await bot.users.fetch(unbanned);
+  if (!member) {
+    return message.channel.send(`Please enter a id!`)
+}
+  try {
+    const banList = await message.guild.fetchBans();
+  
+    if (!banList.get(unbanned)) {
+    return await message.channel.send(`this user is not banned`)
+    }else{
+        message.guild.members.unban(member);
+        return await message.channel.send(`${member.tag} has been successfully unbanned.`)
         }
-
-        try {
-            message.guild.fetchBans().then(bans => {
-                message.guild.members.unban(member)
-            })
-            await message.channel.send(`${member} has been unbanned!`)
-        } catch (e) {
-            return message.channel.send(`An error occured!`)
-        }
-
+  } catch(err) {
+    return message.channel.send(`An error occured ${err}!`)
+  }
 
 }
+
+
 
 
 module.exports.config = {

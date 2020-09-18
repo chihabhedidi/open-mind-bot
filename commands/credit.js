@@ -35,9 +35,26 @@ await targetuser.updateOne({
 });
 
   message.channel.send(`**<@${message.author.id}>, You have been sent \`$${Math.floor(parseInt(args[1]))}\` to <@${targetuser.userID}>**`);
-  }else return message.channel.send(`**💳 | <@${targetuser.userID}>'s have a \`$${targetuser.balance}\`**`);
+  }else {
   
-}else return message.channel.send(`**💳 | <@${messageauthor.userID}>'s have a \`$${messageauthor.balance}\`**`);
+  const embed = new Discord.MessageEmbed()
+.setTitle("Your balance")
+.setThumbnail("https://hotemoji.com/images/dl/4/money-bag-emoji-by-twitter.png")
+.setDescription (`**💳 | <@${targetuser.userID}>'s have a \`$${targetuser.balance}\`**`)
+.setTimestamp()
+.setColor('#d9c545')
+return message.channel.send(embed)
+  }
+  
+}else {
+const embed = new Discord.MessageEmbed()
+.setTitle("Your balance")
+.setThumbnail("https://hotemoji.com/images/dl/4/money-bag-emoji-by-twitter.png")
+.setDescription (`**💳 | <@${messageauthor.userID}>'s have a \`$${messageauthor.balance}\`**`)
+.setTimestamp()
+.setColor('#d9c545')
+return message.channel.send(embed)
+}
    
 
  }

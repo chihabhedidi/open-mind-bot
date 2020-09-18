@@ -199,7 +199,7 @@ module.exports.run = async (bot, message, args) => {
         )
         await message.channel.send(embed5)
     }
-    if(args[0] === 'level'){
+     if(args[0] === 'level'){
         const embed4 = new MessageEmbed()
         .setThumbnail(bot.user.displayAvatarURL())
         .setColor('#f3f3f3')
@@ -217,7 +217,22 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
-                name: ":ok_hand::** - \`Leveling channel [#channel]\`**",
+                name: ":clap:** - \`Leveling roles add\`**",
+                value: `**Leveling roles add** Link a role to a level. Removes another role if given `,
+                inline: true
+            },
+            {
+                name: ":point_up:** - \`Leveling roles remove\`**",
+                value: `**Leveling roles remove** Delete a level association`,
+                inline: true
+            },
+            {
+                name: ":newspaper:** - \`Leveling roles list\`**",
+                value: `**Leveling roles list**  List of level/role associations.`,
+                inline: true
+            },
+            {
+                name: ":ok_hand:** - \`Leveling channel [#channel]\`**",
                 value: `**Leveling** To set a channel for leveling messages `,
                 inline: true
             },
@@ -253,13 +268,8 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
-                name: ":computer:** - \`screenshot\`**",
-                value: `**Screenshot** To display a specific website`,
-                inline: true
-            },
-            {
                 name: ":regional_indicator_x::o2:** - \`xo\`**",
-                value: `**Xo** To start xo game`,
+                value: `**Xo** To start tictactoe game`,
                 inline: true
             },
             {
@@ -329,8 +339,12 @@ module.exports.run = async (bot, message, args) => {
          **<:info:741237861969559652> info CMDs**
         \`${settings.prefix}help info\`
         **<:earlysupportter:741237858396012604> Support CMDs**
-        \`${settings.prefix}help support\``)
-        .setFooter(`Requested By : ${message.author.tag} • Today at ${time}`)
+        \`${settings.prefix}help support\`
+
+        [**Support Server**](https://discord.com/invite/AXnRXeS)`)
+    
+        
+        .setFooter(`Requested By : ${message.author.tag}`)
     await message.channel.send(embed)
 }
 if(args[0]) {

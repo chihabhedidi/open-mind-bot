@@ -1,16 +1,29 @@
 const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
-const db = require("quick.db")
+const mongoose =require("mongoose");
+const Warning =require('../models/warning');
 
 module.exports.run = async (bot, message, args) => {
-    if(message.author.bot) return;
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-        return message.channel.send("You should have MANAGE_MESSAGES permsission to use this command!")
-      }
     const user = message.mentions.members.first() || message.author
-    let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
-    if(warnings === null) warnings = 0;
-    message.channel.send(`${user} have **${warnings}** warning(s)`)
+    let f=0;
+      let warnings = await Warning.findOne({
+      userID: user.id,
+      guildID: message.guild.id,
+
+  },async (err, user)  => {
+      if (err) console.error(err)
+      
+        if (!user) {
+    return message.channel.send("this user has 0 warnings")
+      }
+if(user){
+    f=1;
+}
+  })
+  if(f==1){
+   await message.channel.send(`${message.mentions.users.first().username} have **${warnings.warnings}** warning(s)`)
+
+  }
 
 }
 

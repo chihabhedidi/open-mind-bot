@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     if(!aMember) return message.channel.send("mention a user.")
     let role = message.guild.roles.cache.find(r => r.name == args[1]) || message.guild.roles.cache.find(r => r.id == args[1]) || message.mentions.roles.first()
     if(!role) return message.channel.send("mention a role.")
- 
+ try{
     if(!aMember.roles.cache.has(role.id)) {
         return message.channel.send(`${aMember}does\'nt have this role.`)
     } else {
@@ -19,6 +19,9 @@ module.exports.run = async (bot, message, args) => {
         aMember.createDM().then( channel => {
             channel.send(`role, **${role.name}** has been removed`)
         })
+    }
+ }catch (err) {
+        return message.reply(`\`${err.message}.!\``);
     }
 }
 

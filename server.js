@@ -2,7 +2,9 @@
 const botsettings = require('./botsettings.json');
 const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client({
+  allowedMentions: { parse: [] }
+});
 const { badwords } = require("./data.json") 
 const db = require("quick.db");
 const DBL = require("dblapi.js");
@@ -36,25 +38,6 @@ bot.on("ready", () => {
 
 
 
-bot.on("message", async message  => { 
-  let settings = await Guild.findOne({
-    guildID: message.guild.id
-  })
- if(settings.antiswear=="on"){
-    let confirm = false;
-  var i;
-  for(i = 0;i < badwords.length; i++) {
-    
-    if(message.content.toLowerCase().includes(badwords[i].toLowerCase()))
-      confirm = true;
-    
-  }
-  if(confirm) {
-      message.delete()
-      return message.channel.send("You are not allowed to send badwords here")
-    }    }
-  
-})
 
 bot.on("message", async message  => { 
   let settings = await Guild.findOne({
@@ -69,10 +52,18 @@ bot.on("message", async message  => {
       confirm = true;
     
   }
-  if(confirm) {
-      message.delete()
+   
+   if(confirm) {
+    try{
+     await message.delete()
       return message.channel.send("You are not allowed to send badwords here")
-    }    }
+    }catch (err) {
+      return message.reply(`\`${err.message}.!\``);
+    }  
+
+    } 
+   
+ }
   
 })
 

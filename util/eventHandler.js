@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const botsettings = require('../botsettings.json');
 const Discord = require('discord.js');
 const member = require('../models/member');
+const Leveling = require('../models/leveling');
 module.exports = bot => {
     bot.once("ready", function() {reqEvent("ready") (bot) });
     bot.on('guildCreate', async function(guild) {
@@ -38,7 +39,7 @@ module.exports = bot => {
 
       });
       bot.on("guildMemberAdd", async member => {
-        if(member.author.bot) return;
+        if(member.bot) return;
         let ss = await User.findOne({
             userID: member.id
         }, (err, user) => {
@@ -63,10 +64,10 @@ module.exports = bot => {
           if(settings.welcome_channel != "null" && settings.Autorole!="null") { //check if var have value or not
             member.roles.add(settings.Autorole);
             let wembed = new Discord.MessageEmbed() //define embed
-        .setAuthor(member.user.username, member.user.avatarURL())
+        .setAuthor(member.user.username, member.user.displayAvatarURL({dynamic : true}))
         .setColor("RANDOM")
-        .setThumbnail(member.user.avatarURL())
-        .setDescription(settings.welcome_message);
+        .setThumbnail(member.guild.iconURL({dynamic : true}))
+        .setDescription(`${settings.welcome_message}`);
         
         bot.channels.cache.get(settings.welcome_channel).send(wembed) //get channel and send embed
           }
@@ -78,10 +79,10 @@ module.exports = bot => {
           }
           if(settings.welcome_channel!="null" && settings.Autorole==="null"){
             let wembed = new Discord.MessageEmbed() //define embed
-        .setAuthor(member.user.username, member.user.avatarURL())
+        .setAuthor(member.user.username, member.user.displayAvatarURL({dynamic : true}))
         .setColor("RANDOM")
-        .setThumbnail(member.user.avatarURL())
-        .setDescription(settings.welcome_message);
+        .setThumbnail(member.guild.iconURL({dynamic : true}))
+        .setDescription(`${settings.welcome_message}`);
         
         bot.channels.cache.get(settings.welcome_channel).send(wembed) //get channel and send embed
           }
@@ -160,18 +161,52 @@ module.exports = bot => {
           });
 
           if(lve.leveling_channel!=="null"){
-            bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
-          }else{
-
-          message.channel.send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);}
-          const me = await member.findOne({
+            let lf=0;
+          
+          bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
+          const me = await Leveling.findOne({
             guildID: message.channel.guild.id,
-            
-        });
-        
-         
+            rolelevel:Member.level+1
+        },async (err, level)  => {
+        if(level){
+          lf=1}
 
+        });
+    
+if(lf==1){
+if (  me.rolelevel==Member.level+1){
+  await message.member.roles.add(me.roletoad)
+  if(me.roletoremove!="null"){await message.member.roles.remove(me.roletoremove)}
+  }
+}
+  
+            
+          }else{
+          message.channel.send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
         
+          const me = await Leveling.findOne({
+            guildID: message.channel.guild.id,
+            rolelevel:Member.level+1
+        },async (err, level)  => {
+if(level){
+
+lf=1
+}
+
+        });
+    
+if(lf==1){
+if (  me.rolelevel==Member.level+1){
+  await message.member.roles.add(me.roletoad)
+  if(me.roletoremove!="null"){await message.member.roles.remove(me.roletoremove)}
+
+  }
+}
+    
+        
+        }
+
+          
        
       
         } else

@@ -1,13 +1,13 @@
 const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
-const db = require("quick.db")
+const mongoose =require("mongoose");
+const Warning =require('../models/warning');
 
 module.exports.run = async (bot, message, args) => {
-  if(message.author.bot) return;
-    if(!message.member.hasPermission(" MANAGE_SERVER")) {
-        return message.channel.send("You should have  MANAGE_SERVER perms to use this command")
+    if(!message.member.hasPermission("ADMINISTRATOR")) {
+        return message.channel.send("You should have admin perms to use this command")
       }
-      
+      let f =0;
       const user = message.mentions.members.first()
       
       if(!user) {
@@ -20,14 +20,27 @@ module.exports.run = async (bot, message, args) => {
       if(message.author.id === user.id) {
         return message.channel.send("You are not allowed to reset your warnings")
       }
-      
-      let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
-      if(warnings === null) {
-        return message.channel.send(`${message.mentions.users.first().username} do not have any warnings`)
-      }
-      db.delete(`warnings_${message.guild.id}_${user.id}`)
-      user.send(`Your all warnings are reseted by ${message.author.username} from ${message.guild.name}`)
-      await message.channel.send(`Reseted all warnings of ${message.mentions.users.first().username}`) //DO NOT FORGET TO USE ASYNC FUNCTION
+      let warnings = await Warning.findOne({
+        userID: user.id,
+        guildID: message.guild.id,
+    },async (err, user)  => {
+        if (err) console.error(err)
+        
+          if (!user) {
+      return message.channel.send(`${message.mentions.users.first().username} do not have any warnings`)
+        }
+  if(user){
+    f=1
+
+  }
+    })
+if(f==1){
+  await warnings.updateOne({
+    warnings:0,
+});
+await message.channel.send(`Reseted all warnings of ${message.mentions.users.first().username}`)
+}
+
         
 }
 

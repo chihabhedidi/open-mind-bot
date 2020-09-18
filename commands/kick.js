@@ -15,8 +15,8 @@ if(user) {
         await member.kick();
         message.reply(`Successfully kicked ${user.tag}`);
     }
-    catch(err) {
-        console.log(err);
+     catch (err) {
+        return message.reply(`\`${err.message}.!\``);
     }
 }else {
     // The mentioned user isn't in this guild
