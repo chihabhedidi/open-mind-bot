@@ -21,8 +21,8 @@ module.exports = bot => {
   if(f==1){
     return
   }
-        let gid= await setting.guildID
-        if(gid!="null"){
+        
+        if(f==0){
       let sguildid = await setting.guildID
       let tusers = await setting.allusers
       let membs = await setting.membercount
@@ -52,8 +52,8 @@ module.exports = bot => {
   if(f1==1){
     return
   }
-        let gid= await setting.guildID
-        if(gid!="null"){
+        
+        if(f1==0){
   let sguildid = await setting.guildID
   let tusers = await setting.allusers
   let membs = await setting.membercount
