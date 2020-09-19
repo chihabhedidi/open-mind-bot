@@ -273,6 +273,11 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
+                name: ":computer:** - \`screenshot\`**",
+                value: `**Screenshot** To display a specific website`,
+                inline: true
+            },
+            {
                 name: ":regional_indicator_x::o2:** - \`xo\`**",
                 value: `**Xo** To start tictactoe game`,
                 inline: true
