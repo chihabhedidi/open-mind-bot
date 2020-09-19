@@ -130,6 +130,11 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
+                name: ":chart_with_upwards_trend:** - \`serverstats enable/disable\`**",
+                value: `**serverstats** To show member/bots count in your server`,
+                inline: true
+            },
+            {
                 name: ":hourglass_flowing_sand:** - \`slowmode\`**",
                 value: `**Slowmode** to activate a Slowmode in a channel`,
                 inline: true
