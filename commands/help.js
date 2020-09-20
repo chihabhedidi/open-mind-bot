@@ -346,7 +346,7 @@ module.exports.run = async (bot, message, args) => {
         **<:earlysupportter:741237858396012604> Support CMDs**
         \`${settings.prefix}help support\`
 
-        [**Support Server**](https://discord.com/invite/AXnRXeS)`)
+        [**Support Server**](https://discord.com/invite/AXnRXeS)**|**[**Vote for me**](https://top.gg/bot/731315754175037480/vote)
     
         
         .setFooter(`Requested By : ${message.author.tag}`)

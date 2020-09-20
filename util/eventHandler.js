@@ -99,7 +99,7 @@ module.exports = bot => {
             guildID: guild.id
         }, (err, res) => {
             if(err) console.error(err)
-            console.log('I have been removed from a server!');
+            console.log('I have been removed from ${guild.name}!');
         });
 
       });
