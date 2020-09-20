@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
                 
         }
       
-        const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions'],
+        const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions','--no-sandbox'],
 });
         const page = await browser.newPage();
         await page.goto(`${args[0]}`);
@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
       
 
         try{
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions','--no-sandbox'],
         const page = await browser.newPage();
         if(args[0].startsWith("http://") || args[0].startsWith("https://")) ;
         else args[0] = `https://${args[0]}`
