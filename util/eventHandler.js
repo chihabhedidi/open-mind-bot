@@ -10,19 +10,12 @@ const Stats =require('../models/stats')
 module.exports = bot => {
     bot.once("ready", function() {reqEvent("ready") (bot) });
     bot.on("guildMemberAdd", async member => { //usage of welcome event
-      let f=0;
+      
       let setting = await Stats.findOne({
         guildID: member.guild.id
-    },async (err, guild)  => {
-    if(!guild){
-      f=1
-    }
     })
-  if(f==1){
-    return
-  }
-        
-        if(f==0){
+      
+    if(setting){
       let sguildid = await setting.guildID
       let tusers = await setting.allusers
       let membs = await setting.membercount
@@ -38,22 +31,15 @@ module.exports = bot => {
         member.guild.channels.cache.get(membs).setName("Members : " + humansize);
         member.guild.channels.cache.get(bots).setName("Bots : " + member.guild.members.cache.filter(m => m.user.bot).size);
       }
-        }
-    })
-    bot.on("guildMemberRemove", async member  => { //usage of welcome event
-      let f1=0;
-      let setting = await Stats.findOne({
-        guildID: member.guild.id
-    },async (err, guild)  => {
-    if(!guild){
-      f1=1
     }
     })
-  if(f1==1){
-    return
-  }
-        
-        if(f1==0){
+     bot.on("guildMemberRemove", async member  => { //usage of welcome event
+      
+      let setting = await Stats.findOne({
+        guildID: member.guild.id
+    })
+      
+    if(setting){
   let sguildid = await setting.guildID
   let tusers = await setting.allusers
   let membs = await setting.membercount
@@ -70,7 +56,7 @@ module.exports = bot => {
       
       }
       
-        }
+    } 
     })
 
     bot.on('guildCreate', async function(guild) {
