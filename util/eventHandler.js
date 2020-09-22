@@ -7,8 +7,58 @@ const Discord = require('discord.js');
 const member = require('../models/member');
 const Leveling = require('../models/leveling');
 const Stats =require('../models/stats')
+const Reactionrole =require('../models/reactionrole')
 module.exports = bot => {
     bot.once("ready", function() {reqEvent("ready") (bot) });
+    bot.on('messageReactionAdd', async (reaction, user) => {
+      if(user.partial) await user.fetch();
+      if(reaction.partial) await reaction.fetch();
+      if(reaction.message.partial) await reaction.message.fetch();
+  
+      if(user.bot) return;
+      let member = reaction.message.guild.members.cache.get(user.id);
+      let setting = await Reactionrole.findOne({
+        guildID: reaction.message.guild.id,
+          emoji: reaction.emoji.id||reaction.emoji.identifier,
+          MessageID: reaction.message.id,
+        })
+
+          if (setting) {
+            
+            if (!member.roles.cache.has(setting.Role)) {
+              member.roles.add(setting.Role);
+            } 
+          }
+        
+      
+  });
+  bot.on('messageReactionRemove', async (reaction, user) => {
+    if(user.partial) await user.fetch();
+    if(reaction.partial) await reaction.fetch();
+    if(reaction.message.partial) await reaction.message.fetch();
+
+    if(user.bot) return;
+    let member = reaction.message.guild.members.cache.get(user.id);
+    let setting = await Reactionrole.findOne({
+      guildID: reaction.message.guild.id,
+        emoji: reaction.emoji.id||reaction.emoji.identifier,
+        MessageID: reaction.message.id,
+      })
+
+        if (setting) {
+       
+          if (member.roles.cache.has(setting.Role)) {
+            member.roles.remove(setting.Role);
+          } 
+        }
+      
+    
+});
+
+
+
+
+
     bot.on("guildMemberAdd", async member => { //usage of welcome event
       
       let setting = await Stats.findOne({
@@ -85,7 +135,7 @@ module.exports = bot => {
             guildID: guild.id
         }, (err, res) => {
             if(err) console.error(err)
-            console.log('I have been removed from ${guild.name}!');
+            console.log(`I have been removed from ${guild.name}!`);
         });
 
       });

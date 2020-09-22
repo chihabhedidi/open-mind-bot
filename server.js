@@ -2,9 +2,7 @@
 const botsettings = require('./botsettings.json');
 const moment = require('moment');
 const { GiveawaysManager } = require('discord-giveaways');
-const bot = new Discord.Client({
-  allowedMentions: { parse: [] }
-});
+const bot = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] ,allowedMentions: { parse: [] }});
 const { badwords } = require("./data.json") 
 const db = require("quick.db");
 const DBL = require("dblapi.js");
@@ -87,13 +85,15 @@ bot.giveawaysManager = new GiveawaysManager(bot, {
 });
 bot.snipes = new Map()
 bot.on('messageDelete', function(message, channel){
-  
+  try{
   bot.snipes.set(message.channel.id, {
     content:message.content,
-    author:message.author.tag,
+    author:message.author.username,
     image:message.attachments.first() ? message.attachments.first().proxyURL : null
   })
-  
+}catch (err){
+if(err)return; 
+}
 })
 fs.readdir("./commands/", (err, files) => {
 
