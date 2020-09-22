@@ -101,7 +101,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":unlock:** - \`unlock\`**",
-                value: `**Unlock** A specificchannel`,
+                value: `**Unlock** A specific channel`,
                 inline: true
             },
             {
@@ -116,7 +116,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":face_with_symbols_over_mouth:** - \`antiswear\`**",
-                value: `**Antiswear** To disable bed words in your server`,
+                value: `**Antiswear** To disable bad words in your server`,
                 inline: true
             },
             {
