@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     const banList = await message.guild.fetchBans();
   
     if (!banList.get(unbanned)) {
-    return await message.channel.send(`this user is not banned`)
+    return await message.channel.send(`This user is not banned`)
     }else{
         message.guild.members.unban(member);
         return await message.channel.send(`${member.tag} has been successfully unbanned.`)

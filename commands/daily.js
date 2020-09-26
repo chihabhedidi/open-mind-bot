@@ -24,7 +24,7 @@ return message.channel.send(`**:x: | You can get your daily reward after ( \`${M
     const embed = new Discord.MessageEmbed()
     .setTitle("Your daily reward")
     .setThumbnail("https://media.giphy.com/media/3ohjV1wV5q38uFVjG0/giphy.gif")
-    .setDescription (`**:money_with_wings: |You got \`$${amount}\` money!!**`)
+    .setDescription (`**:money_with_wings: |You got \`$${amount}\` !**`)
     .setTimestamp()
     .setColor('#4c9130')
     message.channel.send(embed)

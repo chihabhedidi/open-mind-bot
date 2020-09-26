@@ -3,15 +3,7 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    let user;
-  
-    if (message.mentions.users.first()) {
-      user = message.mentions.users.first();
-    } else if (args[0]) {
-      user = message.guild.members.cache.get(args[0]).user;
-    } else {
-      user = message.author;
-    }
+  let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
     
     let avatar = user.displayAvatarURL({size: 256, dynamic: true});
     let avatar1 = user.displayAvatarURL({size: 2048, dynamic: true});

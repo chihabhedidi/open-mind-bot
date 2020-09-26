@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":arrows_counterclockwise:** - \`reset-warnings\`**",
-                value: `**reset-warnings** Rest the number of warns of Member Specified by the User`,
+                value: `**reset-warnings** Reset the number of warns of Member Specified by the User`,
                 inline: true
             },
             {
@@ -106,7 +106,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":triangular_flag_on_post:** - \`setprefix\`**",
-                value: `**Setprefix** For Open Mind in your server,Forget the prefix? type \`prefix\``,
+                value: `**Setprefix** For Open Mind in your server,Forget the prefix?\`mention the bot\``,
                 inline: true
             },
             {
@@ -218,7 +218,7 @@ module.exports.run = async (bot, message, args) => {
         .addFields(
             {
                 name: ":bust_in_silhouette:** - \`profile\`**",
-                value: `**Profile** To se your level`,
+                value: `**Profile** To see your level`,
                 inline: true
             },
             {
@@ -289,7 +289,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
                 name: ":speak_no_evil:** - \`say\`**",
-                value: `**Says** A message inputted`,
+                value: `**Says** A written message`,
                 inline: true
             },
         )

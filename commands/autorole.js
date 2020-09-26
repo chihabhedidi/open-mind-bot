@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
     
     
     
-    message.channel.send(`autorole  is seted as ${role} make sure that the bot have the permission to give roles`) //send success message
+    message.channel.send(`autorole is set as ${role} make sure that the bot have the permission to give roles`) //send success message
   
 
 }

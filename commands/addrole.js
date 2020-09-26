@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     if(!role) return message.channel.send("mention a role.")
   try{
     if(aMember.roles.cache.has(role.id)) {
-        return message.channel.send(`${aMember} have already this role.`)
+        return message.channel.send(`${aMember} already has this role.`)
     } else {
         await aMember.roles.add(role.id)
         message.channel.send(` role, **${role.name}** have been added`)

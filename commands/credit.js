@@ -38,9 +38,9 @@ await targetuser.updateOne({
   }else {
   
   const embed = new Discord.MessageEmbed()
-.setTitle("Your balance")
+.setTitle(`${targetuser.userID}\`s Balance`)
 .setThumbnail("https://hotemoji.com/images/dl/4/money-bag-emoji-by-twitter.png")
-.setDescription (`**💳 | <@${targetuser.userID}>'s have a \`$${targetuser.balance}\`**`)
+.setDescription (`**💳 | <@${targetuser.userID}>'s has \`$${targetuser.balance}\`**`)
 .setTimestamp()
 .setColor('#d9c545')
 return message.channel.send(embed)
@@ -50,7 +50,7 @@ return message.channel.send(embed)
 const embed = new Discord.MessageEmbed()
 .setTitle("Your balance")
 .setThumbnail("https://hotemoji.com/images/dl/4/money-bag-emoji-by-twitter.png")
-.setDescription (`**💳 | <@${messageauthor.userID}>'s have a \`$${messageauthor.balance}\`**`)
+.setDescription (`**💳 | <@${messageauthor.userID}>'s has \`$${messageauthor.balance}\`**`)
 .setTimestamp()
 .setColor('#d9c545')
 return message.channel.send(embed)
@@ -64,5 +64,5 @@ module.exports.config = {
     description: "show your or someone\'s credit",
     usage: "credit [@member]",
     accessableby: "PUBLIC_USAGE",
-    aliases: ["credit"]
+    aliases: ["c"]
 }

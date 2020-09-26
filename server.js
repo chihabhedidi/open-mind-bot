@@ -45,9 +45,10 @@ bot.on("message", async message  => {
     let confirm = false;
   var i;
   for(i = 0;i < badwords.length; i++) {
-    
-    if(message.content.toLowerCase().includes(badwords[i].toLowerCase()))
+
+if(message.content.toLowerCase().includes(badwords[i].toLowerCase()))
       confirm = true;
+    
     
   }
    

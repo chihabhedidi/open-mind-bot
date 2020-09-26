@@ -38,7 +38,7 @@ if(f==1){
   await warnings.updateOne({
     warnings:0,
 });
-await message.channel.send(`Reseted all warnings of ${message.mentions.users.first().username}`)
+await message.channel.send(`${message.mentions.users.first().username} warnings has been reset to 0 `)
 }
 
         

@@ -35,7 +35,7 @@ if(settings.Autorole!="null"){
 const embed = new MessageEmbed()
         
         .setColor('#f3f3f3')
-        .setTitle(`**Panel of ${message.guild.name} **`)
+        .setTitle(`**${message.guild.name}\`s Panel**`)
         .setDescription(`**Welcome channel : **${wc}
         **Leave channel : **${lc}
         **Leveling  system : **${ls}
