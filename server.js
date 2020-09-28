@@ -53,6 +53,7 @@ function is_url(str) {
 
 if(is_url(message.content) === true) {
   try{
+if(message.member.hasPermission('ADMINISTRATOR'))return;
     await message.delete()
       return message.channel.send("You can not send link here :/") 
     }catch (err) {
