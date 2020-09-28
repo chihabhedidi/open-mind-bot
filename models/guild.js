@@ -10,6 +10,7 @@ module.exports = mongoose.model(
       prefix: { type: String, default: `${botconfig.default_prefix}`},
       Autorole: { type: String, default: `${botconfig.default_Autorole}`},
       antiswear: { type: String, default: `${botconfig.default_antiswear}`},
+      antilinks: { type: String, default: `${botconfig.default_antilinks}`},
       welcome_channel: { type: String, default: `${botconfig.default_welcome_channel}`},
       welcome_message: { type: String, default: `${botconfig.default_welcome_message}`},
       leave_channel: { type: String, default: `${botconfig.default_leave_channel}`},

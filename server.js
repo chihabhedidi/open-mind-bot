@@ -11,6 +11,8 @@ const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczMTMxNTc1ND
 const mongoose = require('mongoose');
 const Guild =require('./models/guild');
 const User =require('./models/user');
+var Filter = require('bad-words'),
+filter = new Filter();
 bot.mongoose = require('./util/mongoose');
 dbl.on('posted', () => {
   console.log('Server count posted!');
@@ -33,6 +35,35 @@ bot.on("ready", () => {
   
   
 })
+bot.on("message", async message  => { 
+function is_url(str) {
+  let regexp = /(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?/;
+  if(regexp.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+  
+}
+  let settings = await Guild.findOne({
+    guildID: message.guild.id
+  })
+ if(settings.antilinks=="on"){
+
+
+if(is_url(message.content) === true) {
+  try{
+    await message.delete()
+      return message.channel.send("You can not send link here :/") 
+    }catch (err) {
+      return message.reply(`\`${err.message}.!\``);
+    }   
+    }
+  
+  
+}
+})
+
 
 
 
@@ -42,30 +73,19 @@ bot.on("message", async message  => {
     guildID: message.guild.id
   })
  if(settings.antiswear=="on"){
-    let confirm = false;
-  var i;
-  for(i = 0;i < badwords.length; i++) {
-
-if(message.content.toLowerCase().includes(badwords[i].toLowerCase()))
-      confirm = true;
-    
-    
-  }
-   
-   if(confirm) {
-    try{
-     await message.delete()
-      return message.channel.send("You are not allowed to send badwords here")
-    }catch (err) {
-      return message.reply(`\`${err.message}.!\``);
-    }  
-
-    } 
-   
+  
+ if(filter.isProfane(message.content)==true){
+  try{
+  await message.delete()
+  return message.channel.send("You are not allowed to test etst send badwords here")
+}catch (err) {
+  return message.reply(`\`${err.message}.!\``);
+} 
  }
   
+  }
+  
 })
-
 require("./util/eventHandler")(bot)
 
 const fs = require("fs");

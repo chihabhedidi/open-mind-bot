@@ -120,6 +120,11 @@ module.exports.run = async (bot, message, args) => {
                 inline: true
             },
             {
+                name: ":link:** - \`antilinks\`**",
+                value: `**Antilinks** To disable links in your server`,
+                inline: true
+            },
+            {
                 name: ":wave:** - \`setwelcome\`**",
                 value: `**SetWelcome** Channel for the server`,
                 inline: true

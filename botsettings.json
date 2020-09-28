@@ -1,11 +1,12 @@
 {
-    
     "default_prefix": "m!",
     "default_Autorole":"null",
     "default_antiswear":"null",
+    "default_antilinks":"null",
     "default_welcome_channel":"null",
     "default_welcome_message":"We are very happy to have you in our server",
     "default_leave_channel":"null",
     "default_leveling_channel":"null"
 
+    
 }
