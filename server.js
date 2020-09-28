@@ -77,7 +77,7 @@ bot.on("message", async message  => {
  if(filter.isProfane(message.content)==true){
   try{
   await message.delete()
-  return message.channel.send("You are not allowed to test etst send badwords here")
+  return message.channel.send("You are not allowed to send badwords here")
 }catch (err) {
   return message.reply(`\`${err.message}.!\``);
 } 
