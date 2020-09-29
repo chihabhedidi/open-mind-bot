@@ -18,6 +18,17 @@ module.exports.run = async (bot, message, args) => {
       });
        return  message.channel.send(`Disabling leave channel `) //send success message
       }
+      if(args[0]==="message"){
+        let msg = args.slice(1).join(" ")
+        if(!msg){
+          return message.channel.send(`Pleasa specify a leave message `)
+        }
+        await settings.updateOne({
+          leave_message: msg
+        });
+  
+       return  message.channel.send(`you have set a new leave message `) //send success message
+      }
       let channel1 = message.mentions.channels.first()
     if(!channel1) { //if channel is not mentioned
       return message.channel.send("Please Mention the channel first")
