@@ -14,6 +14,7 @@ module.exports = mongoose.model(
       welcome_channel: { type: String, default: `${botconfig.default_welcome_channel}`},
       welcome_message: { type: String, default: `${botconfig.default_welcome_message}`},
       leave_channel: { type: String, default: `${botconfig.default_leave_channel}`},
+      leave_message: { type: String, default: `${botconfig.default_leave_message}`},
       leveling_channel: { type: String, default: `${botconfig.default_leveling_channel}`},
       leveling_status: { type: String, default: `off`}
       

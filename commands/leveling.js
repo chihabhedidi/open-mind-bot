@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+﻿const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 const Guild =require('../models/guild');
 const Leveling =require('../models/leveling');
@@ -143,7 +143,27 @@ module.exports.run = async (bot, message, args) => {
            }
             } 
             if(args[1]==="list"){
-                const del = await Leveling.find({
+                     const data = await Leveling
+    .find({ guildID: message.channel.guild.id })
+  
+const rta = data.map(z => z.roletoad);
+const rl = data.map(y => y.rolelevel);
+const rtr = data.map(x => x.roletoremove);
+const lb = rta.map((a,b) => { 
+    if(rtr[b]=="null"){
+    return [`**<@&${rta[b]}>:${rl[b]} **`]; }
+  return [`**<@&${rta[b]}>:${rl[b]} - Removes: <@&${rtr[b]}> **`];  
+});
+
+
+const embed = new Discord.MessageEmbed()
+        
+        .setColor('0x2ecc71')
+        .setTitle(`** ${message.guild.name} | Leveling Roles**`)
+        .setDescription(lb.join("\n"))
+    
+    await message.channel.send(embed)
+                /*const del = await Leveling.find({
                     guildID: message.guild.id,
                 }, { _id: 0,  roletoad: 1, roletoremove: 1,rolelevel:1 })
                
@@ -168,7 +188,7 @@ module.exports.run = async (bot, message, args) => {
                     }
                     
                     }
-        return;
+        return;*/
             }
             
         }

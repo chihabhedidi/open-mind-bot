@@ -5,8 +5,10 @@
     "default_antilinks":"null",
     "default_welcome_channel":"null",
     "default_welcome_message":"We are very happy to have you in our server",
+    "default_leave_message":"we hope to see you again in our server",
     "default_leave_channel":"null",
     "default_leveling_channel":"null"
+
 
     
 }

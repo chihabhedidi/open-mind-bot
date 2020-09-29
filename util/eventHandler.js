@@ -205,7 +205,7 @@ module.exports = bot => {
         .setAuthor(member.user.username, member.user.avatarURL())
         .setColor("RANDOM")
         .setThumbnail(member.user.avatarURL())
-        .setDescription(`we hope to see you again in our server`);
+        .setDescription(`${settings.leave_message}`);
         
         bot.channels.cache.get(settings.leave_channel).send(wembed) //get channel and send embed
         
