@@ -180,6 +180,11 @@ module.exports.run = async (bot, message, args) => {
                 value: `**Feedback** To contact the developer of the bot`,
                 inline: true
             },
+	    {
+                name: "<:upvote:760868710993887254>** - \`vote\`**",
+                value: `**Vote** For the bot ♥`,
+                inline: true
+            },
             {
                 name: ":incoming_envelope:** - \`invite\`**",
                 value: `**Invite** The bot to your server`,
