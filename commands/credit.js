@@ -41,7 +41,7 @@ await targetuser.updateOne({
   }else {
   
   const embed = new Discord.MessageEmbed()
-.setTitle(`<@${targetuser.userID}>\`s Balance`)
+.setTitle(`${user.username}\`s Balance`)
 .setThumbnail("https://hotemoji.com/images/dl/4/money-bag-emoji-by-twitter.png")
 .setDescription (`**💳 | <@${targetuser.userID}>'s has \`$${targetuser.balance}\`**`)
 .setTimestamp()
