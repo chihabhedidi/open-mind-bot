@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
-
+    if(message.author.bot) return;
     const embed = new Discord.MessageEmbed()
     .setTitle(`**Privacy**`)
     .setDescription(`
@@ -25,7 +25,7 @@ module.exports.config = {
     name: "privacy",
     description: "privacy",
     usage: "privacy",
-    accessableby: "Members",
+    Permissions: "Members",
     aliases: []
 }
 

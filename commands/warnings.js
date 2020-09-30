@@ -4,6 +4,7 @@ const mongoose =require("mongoose");
 const Warning =require('../models/warning');
 
 module.exports.run = async (bot, message, args) => {
+  if(message.author.bot) return;
     const user = message.mentions.members.first() || message.author
     let f=0;
       let warnings = await Warning.findOne({
@@ -31,6 +32,6 @@ module.exports.config = {
     name: "warnings",
     description: "view the number of warns of a specific member",
     usage: "warnings [Mention]",
-    accessableby: "MANAGE_MESSAGES",
-    aliases: []
+    Permissions: "PUBLIC_USAGE",
+    aliases: ["warns"]
 }

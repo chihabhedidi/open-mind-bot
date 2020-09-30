@@ -55,7 +55,7 @@ module.exports.config = {
     name: "botinfo",
     description: "To show information about the bot",
     usage: "botinfo",
-    accessableby: "Public Usage",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }
 

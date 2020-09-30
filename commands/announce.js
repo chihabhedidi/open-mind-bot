@@ -4,8 +4,18 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   if(message.author.bot) return;
-    if(!message.member.hasPermission('SEND_MESSAGES'))
-    return message.channel.send("You don't have permission SEND_MESSAGES to use this command.");
+    if(!message.member.hasPermission('MANAGE_MESSAGES')){
+      const embed = new Discord.MessageEmbed()
+ 
+     .setDescription (`**You need \`MANAGE_MESSAGES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("MANAGE_MESSAGES")){
+      const embed = new Discord.MessageEmbed()
+ 
+     .setDescription (`**The bot needs \`MANAGE_MESSAGES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
     let rChannel = message.mentions.channels.first();
     if (!rChannel)
       return message.channel.send(
@@ -38,8 +48,8 @@ module.exports.config = {
     name: "announce",
     description: "Announce An embed message in a specific channel",
     usage: "announce [#channel] <Title> <the message>",
-    accessableby: "SEND_MESSAGES",
-    aliases: []
+    Permissions: "MANAGE_MESSAGES",
+    aliases: ["an"]
 }
 
 

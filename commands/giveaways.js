@@ -8,8 +8,16 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
     
     if(message.author.bot) return;
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You are not allowed to start giveaways');
-
+    if(!message.member.hasPermission('MANAGE_MESSAGES')){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**You need \`MANAGE_MESSAGES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("MANAGE_MESSAGES")){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**The bot needs \`MANAGE_MESSAGES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
     let channel = message.mentions.channels.first();
 
     if (!channel) return message.channel.send('Please provide a channel');
@@ -76,6 +84,6 @@ module.exports.config = {
     name: "giveaway",
     description: "Giveaway A prize in your server",
     usage: "giveaway [#channel] <Time> <number of winners> (the prize)",
-    accessableby: "MANAGE_MESSAGES",
-    aliases: []
+    Permissions: "MANAGE_MESSAGES",
+    aliases: ["g"]
 }

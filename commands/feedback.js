@@ -18,7 +18,7 @@ module.exports.config = {
     name: "feedback",
     description: "To contact the developer",
     usage: "feedback",
-    accessableby: "Public Usage",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }
 

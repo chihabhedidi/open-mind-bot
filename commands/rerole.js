@@ -5,8 +5,16 @@ const botconfig = require("../botsettings.json");
 module.exports.run = async (bot, message, args) => {
     
     if(message.author.bot) return;
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You do not have permission to rerol giveaways');
-
+    if(!message.member.hasPermission('MANAGE_MESSAGES')){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**You need \`MANAGE_MESSAGES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("MANAGE_MESSAGES")){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**The bot needs \`MANAGE_MESSAGES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
     if(!args[0]) return message.channel.send('No giveaway ID provided');
 
     let giveaway = bot.giveawaysManager.giveaways.find((g) => g.prize === args.join(" ")) || bot.giveawaysManager.giveaways.find((g) => g.messageID === args[0]);
@@ -36,6 +44,6 @@ module.exports.config = {
     name: "rerole",
     description: "Rerole To pick another winner",
     usage: "rerole [giveaway message id]",
-    accessableby: "MANAGE_MESSAGES",
+    Permissions: "MANAGE_MESSAGES",
     aliases: []
 }

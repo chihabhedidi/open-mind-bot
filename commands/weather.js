@@ -33,6 +33,6 @@ module.exports.config = {
     name: "weather",
     description: "To show the weather in a specific location",
     usage: "weather (location)",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }

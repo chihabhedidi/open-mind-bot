@@ -7,9 +7,17 @@ const mongoose = require('mongoose');
 
 module.exports.run = async (bot, message, args) => {
     let t = message.content;
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("you dont have the permission MANAGE_ROLES")
-    if(!message.guild.me.hasPermission("MANAGE_ROLES")) return message.channel.send("i dont have the permission MANAGE_ROLES")
-    
+    if(message.author.bot) return;
+    if(!message.member.hasPermission('MANAGE_ROLES')){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**You need \`MANAGE_ROLES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("MANAGE_ROLES")){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**The bot needs \`MANAGE_ROLES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
     // >createReactionRole @role :emoji: MessageId
 if(!args[0]) return message.channel.send("\`Usage:rr @role :emoji: MessageId \`")
         const role = message.mentions.roles.first();
@@ -82,7 +90,7 @@ module.exports.config = {
     name: "reactionrole",
     description: "add a reaction role in a specific message",
     usage: "rr @role :emoji: MessageId ",
-    accessableby: "MANAGE_ROLES",
+    Permissions: "MANAGE_ROLES",
     aliases: ["rr"]
 }
 

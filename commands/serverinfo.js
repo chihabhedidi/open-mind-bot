@@ -3,6 +3,7 @@ const botconfig = require("../botsettings.json");
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     const filterLevels = {
         DISABLED: 'Off',
         MEMBERS_WITHOUT_ROLES: 'No Role',
@@ -61,6 +62,6 @@ module.exports.config = {
     name: "serverinfo",
     description: "saw information about the server",
     usage: "serverinfo",
-    accessableby: "Members",
+    Permissions: "PUBLIC_USAGE",
     aliases: ["si"]
 }

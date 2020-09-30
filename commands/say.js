@@ -14,6 +14,6 @@ module.exports.config = {
     name: "say",
     description: "Says a message inputted",
     usage: "say (message)",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }

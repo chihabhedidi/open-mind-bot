@@ -20,6 +20,6 @@ module.exports.config = {
     name: "meme",
     description: "Send random meme",
     usage: "meme",
-    accessableby: "Public Usage",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }

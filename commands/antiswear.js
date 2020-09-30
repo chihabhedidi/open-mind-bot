@@ -3,9 +3,17 @@ const botconfig = require("../botsettings.json");
 const Guild =require('../models/guild');
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-        return message.channel.send("You should have MANAGE_MESSAGES perms to use this command")
-      }
+  if(message.author.bot) return;
+  if(!message.member.hasPermission('MANAGE_MESSAGES')){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**You need \`MANAGE_MESSAGES\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
+   if(!message.guild.me.hasPermission("MANAGE_MESSAGES")){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**The bot needs \`MANAGE_MESSAGES\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
       const settings = await Guild.findOne({
         guildID: message.guild.id
     });
@@ -31,7 +39,7 @@ module.exports.config = {
     name: "antiswear",
     description: "To disable the bedwords in your server",
     usage: "antiswear (enable/disable)",
-    accessableby: "MANAGE_MESSAGES",
+    Permissions: "MANAGE_MESSAGES",
     aliases: []
 }
 

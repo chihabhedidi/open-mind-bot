@@ -23,7 +23,7 @@ module.exports.config = {
     name: "invite",
     description: "To invite the bot to your server",
     usage: "invite",
-    accessableby: "Public Usage",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }
 

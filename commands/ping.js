@@ -18,7 +18,7 @@ module.exports.config = {
     name: "ping",
     description: "To show your ping",
     usage: "ping",
-    accessableby: "Public Usage",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }
 

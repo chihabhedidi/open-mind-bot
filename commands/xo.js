@@ -52,7 +52,7 @@ module.exports.config = {
     name: "xo",
     description: "tictactoe game",
     usage: "xo <@mention>",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }
 

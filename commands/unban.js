@@ -4,8 +4,17 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('ADMINISTRATOR'))
-    return message.channel.send("You don't have permission to use that command.");
+  if(message.author.bot) return;
+  if(!message.member.hasPermission('BAN_MEMBERS')){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**You need \`BAN_MEMBERS\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
+   if(!message.guild.me.hasPermission("MANAGE_GUILD")){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**The bot needs \`MANAGE_GUILD\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
   let unbanned = args[0]
   let member = await bot.users.fetch(unbanned);
   if (!member) {
@@ -33,6 +42,6 @@ module.exports.config = {
     name: "unban",
     description: "Unban A specific member from a server",
     usage: "unban: [user-id]",
-    accessableby: "BAN_MEMBERS",
+    Permissions: "BAN_MEMBERS",
     aliases: []
 }

@@ -5,9 +5,17 @@ const Warning =require('../models/warning');
 
 module.exports.run = async (bot, message, args) => {
   
-    if(!message.member.hasPermission("ADMINISTRATOR")) {
-        return message.channel.send("You should have admin perms to use this command!")
-      }
+  if(message.author.bot) return;
+  if(!message.member.hasPermission('MANAGE_GUILD')){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**You need \`MANAGE_GUILD\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
+   if(!message.guild.me.hasPermission("MANAGE_GUILD")){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**The bot needs \`MANAGE_GUILD\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
      
       const user = message.mentions.members.first()
       
@@ -70,6 +78,6 @@ module.exports.config = {
     name: "warn",
     description: "a Member Specified by the User",
     usage: "warn [Mention] <Reason>",
-    accessableby: "MANAGE_MESSAGES",
+    Permissions: "MANAGE_GUILD",
     aliases: []
 }

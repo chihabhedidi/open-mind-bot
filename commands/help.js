@@ -383,7 +383,7 @@ if(args[0]) {
             },
             {
                 name: "**Command's Permissions:**",
-                value: `⤿ ${command.config.accessableby}`,
+                value: `⤿ ${command.config.Permissions}`,
                 inline: true
             },
             {

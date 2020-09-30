@@ -21,6 +21,9 @@ if(args[0]){
   const targetuser = await User.findOne({
     userID: user.id
 });
+if(!targetuser){
+  return message.channel.send("I can not find that user")
+}
 //if(user.bot) return message.channel.send("**:x: | The bots cannot have money.**");
 if(args[1]){
 
@@ -38,7 +41,7 @@ await targetuser.updateOne({
   }else {
   
   const embed = new Discord.MessageEmbed()
-.setTitle(`${targetuser.userID}\`s Balance`)
+.setTitle(`<@${targetuser.userID}>\`s Balance`)
 .setThumbnail("https://hotemoji.com/images/dl/4/money-bag-emoji-by-twitter.png")
 .setDescription (`**💳 | <@${targetuser.userID}>'s has \`$${targetuser.balance}\`**`)
 .setTimestamp()
@@ -63,6 +66,6 @@ module.exports.config = {
     name: "credit",
     description: "show your or someone\'s credit",
     usage: "credit [@member]",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: ["c"]
 }

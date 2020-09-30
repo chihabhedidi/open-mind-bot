@@ -4,8 +4,16 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission('KICK_MEMBERS'))
-    return message.channel.send("You don't have permission to KICK_MEMBERS use this command.");
+    if(!message.member.hasPermission('KICK_MEMBERS')){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**You need \`KICK_MEMBERS\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("KICK_MEMBERS")){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**The bot needs \`KICK_MEMBERS\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
 else {
     const user = message.mentions.users.first();
 if(user) {
@@ -31,7 +39,7 @@ module.exports.config = {
     name: "kick",
     description: "Kick A specific member from a server",
     usage: "kick [Mention]",
-    accessableby: "KICK_MEMBERS",
+    Permissions: "KICK_MEMBERS",
     aliases: []
 }
 

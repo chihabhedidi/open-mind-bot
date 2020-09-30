@@ -7,7 +7,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
  
-
+  if(message.author.bot) return;
     const messageauthor = await member.findOne({
         userID: message.member.id,
         guildID: message.guild.id
@@ -160,6 +160,6 @@ module.exports.config = {
     name: "profile",
     description: "to see current level of a specific user",
     usage: "profile",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }

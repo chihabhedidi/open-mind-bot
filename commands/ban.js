@@ -4,8 +4,16 @@ const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission('BAN_MEMBERS'))
-    return message.channel.send("You don't have permission to use that command.");
+    if(!message.member.hasPermission('BAN_MEMBERS')){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**You need \`BAN_MEMBERS\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("BAN_MEMBERS")){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**The bot needs \`BAN_MEMBERS\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
 else {
     const user = message.mentions.users.first();
 if(user) {
@@ -29,9 +37,9 @@ if(user) {
 
 module.exports.config = {
     name: "ban",
-    description: "A specific member from a server",
+    description: "Ban a specific member from a server",
     usage: "ban [Mention]",
-    accessableby: "Admins",
+    Permissions: "BAN_MEMBERS",
     aliases: []
 }
 

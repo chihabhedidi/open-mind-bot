@@ -36,6 +36,6 @@ module.exports.config = {
     name: "daily",
     description: "get your daily reward",
     usage: "daily",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }

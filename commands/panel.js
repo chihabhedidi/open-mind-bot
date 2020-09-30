@@ -6,8 +6,12 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission('ADMINISTRATOR'))
-    return message.channel.send("You don't have permission to use that command.");
+    if(!message.member.hasPermission("ADMINISTATOR")){
+        const embed = new Discord.MessageEmbed()
+   
+       .setDescription (`**You need \`ADMINISTATOR\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
     const settings = await Guild.findOne({
         guildID: message.guild.id
       })
@@ -50,6 +54,6 @@ module.exports.config = {
     name: "panel",
     description: "to see server activities",
     usage: "panel",
-    accessableby: "ADMINISTATOR",
+    Permissions: "ADMINISTATOR",
     aliases: []
 }

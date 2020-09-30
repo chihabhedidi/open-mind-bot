@@ -6,8 +6,17 @@ const mongoose = require('mongoose');
 
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply("you dont have the permission");
-
+    if(message.author.bot) return;
+    if(!message.member.hasPermission('MANAGE_GUILD')){
+        const embed = new Discord.MessageEmbed()
+       .setDescription (`**You need \`MANAGE_GUILD\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
+       if(!message.guild.me.hasPermission("MANAGE_GUILD")){
+        const embed = new Discord.MessageEmbed()
+       .setDescription (`**The bot needs \`MANAGE_GUILD\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
     let t = message.content;
     const settings = await Guild.findOne({
         guildID: message.guild.id
@@ -199,6 +208,6 @@ module.exports.config = {
     name: "leveling",
     description: "To enable/disable leveling system in your server",
     usage: "leveling",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "MANAGE_GUILD",
     aliases: []
 }

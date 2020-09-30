@@ -31,6 +31,6 @@ module.exports.config = {
     name: "leaderboard",
     description: "to see top member in leveling in the server",
     usage: "leaderboard",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: ["lb"]
 }

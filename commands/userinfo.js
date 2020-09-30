@@ -4,6 +4,7 @@ const { MessageEmbed } = require('discord.js');
 const { trimArray } = require('../util/util');
 const moment = require('moment');
 module.exports.run = async (bot, message, args) => {
+    if(message.author.bot) return;
     if(!message.guild) return;
     let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
    
@@ -74,6 +75,6 @@ module.exports.config = {
     name: "userinfo",
     description: "saw information about a member",
     usage: "userinfo",
-    accessableby: "Members",
+    Permissions: "PUBLIC_USAGE",
     aliases: ["ui"]
 }

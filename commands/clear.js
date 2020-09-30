@@ -7,9 +7,16 @@ module.exports.run = async (client, message, args) => {
         message.delete();
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        return message.reply("You don't have permission to MANAGE_MESSAGES use this command!").then(m => m.delete(5000));
-    }
+    if(!message.member.hasPermission('MANAGE_MESSAGES')){
+        const embed = new Discord.MessageEmbed()
+       .setDescription (`**You need \`MANAGE_MESSAGES\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
+       if(!message.guild.me.hasPermission("MANAGE_MESSAGES")){
+        const embed = new Discord.MessageEmbed()
+       .setDescription (`**The bot needs \`MANAGE_MESSAGES\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
 
     if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
         return message.reply("This is not a number").then(m => m.delete(5000));
@@ -31,6 +38,6 @@ module.exports.config = {
     name: "clear",
     description: "Clear A specific number of messages",
     usage: "clear [number]",
-    accessableby: "MANAGE_MESSAGES",
+    Permissions: "MANAGE_MESSAGES",
     aliases: []
 }

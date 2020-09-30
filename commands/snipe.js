@@ -19,6 +19,6 @@ module.exports.config = {
     name: "snipe",
     description: "Send the last deleted message",
     usage: "snipe",
-    accessableby: "PUBLIC_USAGE",
+    Permissions: "PUBLIC_USAGE",
     aliases: []
 }

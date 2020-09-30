@@ -9,9 +9,11 @@ const db = require("quick.db")
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission("MANAGE_GUILD")) {
-        return message.channel.send("You are not allowed or do not have permission to change prefix")
-      }
+  if(!message.member.hasPermission('MANAGE_GUILD')){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**You need \`MANAGE_GUILD\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
 
 const settings = await Guild.findOne({
     guildID: message.guild.id
@@ -31,6 +33,6 @@ module.exports.config = {
     name: "setprefix",
     description: "Setprefix For Open Mind in your server",
     usage: "setprefix",
-    accessableby: "Admins",
+    Permissions: "MANAGE_GUILD",
     aliases: []
 }

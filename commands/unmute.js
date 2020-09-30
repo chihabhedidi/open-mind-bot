@@ -5,8 +5,17 @@ const botconfig = require("../botsettings.json");
 
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('ADMINISTRATOR'))
-    return message.channel.send("You don't have permission to use that command.");
+    if(message.author.bot) return;
+    if(!message.member.hasPermission('MANAGE_ROLES')){
+        const embed = new Discord.MessageEmbed()
+       .setDescription (`**You need \`MANAGE_ROLES\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
+       if(!message.guild.me.hasPermission("MANAGE_GUILD")){
+        const embed = new Discord.MessageEmbed()
+       .setDescription (`**The bot needs \`MANAGE_GUILD\` permission do use this command**`)
+       .setColor('#ff5e5e')
+       return message.channel.send(embed)}
     const user = message.mentions.users.first();    
     if(user) {
         const member = message.guild.member(user);
@@ -40,6 +49,6 @@ module.exports.config = {
     name: "unmute",
     description: "Unmute A specific member from a server",
     usage: "unmute [Mention] ",
-    accessableby: " MANAGE_MESSAGES / MANAGE_ROLE",
+    Permissions: "MANAGE_ROLES",
     aliases: []
 }

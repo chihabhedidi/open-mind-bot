@@ -7,7 +7,17 @@ const mongoose = require('mongoose');
 
 module.exports.run = async (bot, message, args) => {
 
-    if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send(`:x: You need **MANAGE_GUILD** permission to use this command.`)
+  if(message.author.bot) return;
+  if(!message.member.hasPermission('MANAGE_GUILD')){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**You need \`MANAGE_GUILD\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
+   if(!message.guild.me.hasPermission("MANAGE_GUILD")){
+    const embed = new Discord.MessageEmbed()
+   .setDescription (`**The bot needs \`MANAGE_GUILD\` permission do use this command**`)
+   .setColor('#ff5e5e')
+   return message.channel.send(embed)}
     if (!args[0]) return message.channel.send(":x: Invalid parameters. Correct usage: `serverstats enable` | `serverstats disable`.");  
     let f =0;
     if(args[0] === 'enable') {
@@ -130,6 +140,6 @@ module.exports.config = {
     name: "serverstats",
     description: "show bots/members count in your server",
     usage: "serverstats enable/disable",
-    accessableby: "MANAGE_GUILD",
+    Permissions: "MANAGE_GUILD",
     aliases: []
 }

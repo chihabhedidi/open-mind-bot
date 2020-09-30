@@ -6,8 +6,16 @@ const db = require("quick.db")
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission('MANAGE_SERVER'))
-    return message.channel.send("You don't have permission to use that command.");
+    if(!message.member.hasPermission('MANAGE_SERVER')){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**You need \`MANAGE_SERVER\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
+     if(!message.guild.me.hasPermission("MANAGE_ROLES")){
+      const embed = new Discord.MessageEmbed()
+     .setDescription (`**The bot needs \`MANAGE_ROLES\` permission do use this command**`)
+     .setColor('#ff5e5e')
+     return message.channel.send(embed)}
     const settings = await Guild.findOne({
         guildID: message.guild.id
     });
@@ -35,6 +43,6 @@ module.exports.config = {
     name: "autorole",
     description: "To give a role to a member when they join your server",
     usage: "autorole <@role>/disbale",
-    accessableby: "MANAGE_SERVER",
+    Permissions: "MANAGE_SERVER",
     aliases: []
 }
