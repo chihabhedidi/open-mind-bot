@@ -182,8 +182,8 @@ newUser.save()
   if(settings.prefix === null ) settings.prefix = botsettings.default_prefix;
  if(message.content.startsWith("<@!731315754175037480>")) 
   return message.channel.send(`the prefix for ${message.guild.name} is \`${settings.prefix}\``);
-  let messageArray = message.content.split(" ");
-  let cmd = messageArray[0].toLowerCase();
+  let messageArray = message.content.toLowerCase().split(" ");
+  let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
   if(!message.content.startsWith(settings.prefix)) return;
