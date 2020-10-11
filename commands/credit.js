@@ -29,7 +29,7 @@ if(args[1]){
 
   if(targetuser.userID == message.author.id)return message.channel.send("**:x: | You can't give yourself money..**");
   if(isNaN(parseInt(args[1])))return message.channel.send("**:x: | Inviled Amount**");   
-if(isNaN(parseInt(args[1]))<=0)return message.channel.send("**:x: | Inviled Amount**");
+if(parseInt(args[1])<=0)return message.channel.send("**:x: | Inviled Amount**");
   if(parseInt(args[1]) > messageauthor.balance)return message.reply("**:x: | You don't have enough money!**");
   await messageauthor.updateOne({
     balance: messageauthor.balance - Math.floor(parseInt(args[1]))
