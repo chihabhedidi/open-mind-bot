@@ -23,7 +23,7 @@ dbl.on('error', e => {
 })
 bot.on("ready", () => {
   function randomStatus() {
-    let status = [`${bot.guilds.cache.size} Servers`, "m!help", `${bot.users.cache.size} Users`] // You can change it whatever you want.
+    let status = [ "m!help" ] // You can change it whatever you want.
     let rstatus = Math.floor(Math.random() * status.length);
     
     bot.user.setActivity(status[rstatus], {type: "WATCHING"}); 
