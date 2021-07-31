@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
         game_state = ["", "", "", "", "", "", "", "", ""],
         collected = [],
         ActivePlayer = message.author.id;
-    try { for (let emoji of emojis) await msg.react(emoji); } finally {msg.edit(message_content);} // يسوي الرياشكن وبعد ما يسوي يعدل للشكل الطبيعي
+    try { for (let emoji of emojis) await msg.react(emoji); } finally {msg.edit(message_content);} 
     const msg_two = await message.channel.send(`${message.author}`);
     const collector = msg.createReactionCollector((reaction, user) => {return emojis.includes(reaction.emoji.name) && (user.id == message.author.id || user.id == member.id);}, { time: 60 * 1000 * 5 }); // ييراكب الرياكشن اللي بيتحط علي الرسالة
     collector.on('collect', (reaction, user) => {
@@ -27,12 +27,12 @@ module.exports.run = async (bot, message, args) => {
     if(ActivePlayer !== user.id)return;
     if(collected.find(x=> x == reaction.emoji.name))return;
     else collected.push(reaction.emoji.name);
-    message_content = message_content.replace(new RegExp(reaction.emoji.name ,"g"), user.id == message.author.id ? "🇽" : "🅾️"); // يغير محتوي الرسالة بالأحديثات الجديدة
+    message_content = message_content.replace(new RegExp(reaction.emoji.name ,"g"), user.id == message.author.id ? "🇽" : "🅾️");
     msg.edit(message_content);
-    ActivePlayer = ActivePlayer == message.author.id ? member.id : message.author.id; // نغير الدور للاعب الاخر
+    ActivePlayer = ActivePlayer == message.author.id ? member.id : message.author.id; 
     msg_two.edit(`**<@${ActivePlayer}>**`);
     game_state[emojis.indexOf(reaction.emoji.name)] = user.id;
-    if(ChackWiner(game_state))return msg_two.edit(`**<@${user.id}> is winner!!**`).then(()=> collector.stop()); // نشوف اذا اليوثر فاز او لا و اذا فاز يوقف مراكب الرياكشن  
+    if(ChackWiner(game_state))return msg_two.edit(`**<@${user.id}> is winner!!**`).then(()=> collector.stop()); 
     if(game_state.filter(x=> x == "").length == 0 )return msg_two.edit(`**No Winner!**`).then(()=> collector.stop());
     }).on("end",()=> msg.delete({timeout: 5000}).catch(()=> {}));
     
