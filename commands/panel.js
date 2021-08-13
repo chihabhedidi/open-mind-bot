@@ -6,7 +6,7 @@ const db = require("quick.db")
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
-    if(!message.member.hasPermission("ADMINISTATOR")){
+    if(!message.member.hasPermission("ADMINISTRATOR")){
         const embed = new Discord.MessageEmbed()
    
        .setDescription (`**You need \`ADMINISTATOR\` permission do use this command**`)
