@@ -263,8 +263,10 @@ module.exports = bot => {
 
           if(lve.leveling_channel!=="null"){
             let lf=0;
-          
-          bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
+          const embed = new Discord.MessageEmbed()
+     .setDescription (`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`)
+     .setColor('#ff5e5e')
+     bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`)        // bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
           const me = await Leveling.findOne({
             guildID: message.channel.guild.id,
             rolelevel:Member.level+1
@@ -284,7 +286,11 @@ if (  me.rolelevel==Member.level+1){
             
           }else{
               let lf1=0
-          message.channel.send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
+              const embed = new Discord.MessageEmbed()
+              .setDescription (`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`)
+              .setColor('#ff5e5e')
+              message.channel.send(embed)
+          //message.channel.send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
         
           const me = await Leveling.findOne({
             guildID: message.channel.guild.id,
