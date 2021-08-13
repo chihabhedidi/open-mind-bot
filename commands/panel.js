@@ -54,6 +54,6 @@ module.exports.config = {
     name: "panel",
     description: "to see server activities",
     usage: "panel",
-    Permissions: "ADMINISTATOR",
+    Permissions: "ADMINISTRATOR",
     aliases: []
 }
