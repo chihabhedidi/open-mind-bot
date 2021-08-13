@@ -31,7 +31,7 @@ if(user) {
     message.reply("That user isn't in this server!");
   }
 }else {
-    message.channel.send(message.author +"You didn't mention the user to ban!");
+    message.channel.send(message.author.mention +"You didn't mention the user to ban!");
   }
 }}
 
