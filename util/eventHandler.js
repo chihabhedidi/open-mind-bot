@@ -266,7 +266,7 @@ module.exports = bot => {
           const embed = new Discord.MessageEmbed()
      .setDescription (`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`)
      .setColor('#ff5e5e')
-     bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`)        // bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
+     bot.channels.cache.get(lve.leveling_channel).send(embed)        // bot.channels.cache.get(lve.leveling_channel).send(`Congrats <@${Member.userID}>You are now Level  ${Member.level+1}`);
           const me = await Leveling.findOne({
             guildID: message.channel.guild.id,
             rolelevel:Member.level+1
