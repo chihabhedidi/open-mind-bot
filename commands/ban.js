@@ -32,7 +32,7 @@ if(user) {
   }
 }else {
     const embed = new Discord.MessageEmbed()
-     .setDescription (`<@${message.author}>You didn't mention the user to ban!`)
+     .setDescription (`${message.author}You didn't mention the user to ban!`)
      .setColor('#ff5e5e')
      return message.channel.send(embed)
    // message.channel.send(message.author.mention +"You didn't mention the user to ban!");
