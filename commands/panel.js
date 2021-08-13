@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 const Guild =require('../models/guild');
 const db = require("quick.db")
-//const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
     if(message.author.bot) return;
