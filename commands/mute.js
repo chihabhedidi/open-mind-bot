@@ -9,12 +9,12 @@ module.exports.run = async (bot, message, args) => {
   if(message.author.bot) return;
   if(!message.member.hasPermission('MANAGE_ROLES')){
     const embed = new Discord.MessageEmbed()
-   .setDescription (`**You need \`MANAGE_ROLES\` permission do use this command**`)
+   .setDescription (`**You need \`MANAGE_ROLES\` permission to use this command**`)
    .setColor('#ff5e5e')
    return message.channel.send(embed)}
    if(!message.guild.me.hasPermission("MANAGE_GUILD")){
     const embed = new Discord.MessageEmbed()
-   .setDescription (`**The bot needs \`MANAGE_GUILD\` permission do use this command**`)
+   .setDescription (`**The bot needs \`MANAGE_GUILD\` permission to use this command**`)
    .setColor('#ff5e5e')
    return message.channel.send(embed)}
   const user = message.mentions.users.first();
@@ -67,7 +67,7 @@ message.channel.send(`${member} has been unmuted!`);
         }else{
          return message.reply("That user isn't in this server!");
 }
-}else{return message.channel.send("Please please mention member")}}
+}else{return message.channel.send("Mention a member please")}}
 
 module.exports.config = {
     name: "mute",
