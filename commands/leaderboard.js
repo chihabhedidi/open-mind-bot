@@ -15,7 +15,7 @@ const user = data.map(z => z.userID);
 const xp = data.map(y => y.xp);
 const next = data.map(x => x.next);
 const lb = user.map((a, b) => { 
-  return [`#${b + 1}: ${message.guild.members.cache.get(a) ? `<@${a}>` : `\`Unknown#0000\``} | XP: \`${xp[b]}/${next[b]}\``];  
+  return [`#${b + 1}: ${message.guild.members.cache.get(a) ? `<@${a}>` :`<@!${a}>` } | XP: \`${xp[b]}/${next[b]}\``];  
 });
 
 
