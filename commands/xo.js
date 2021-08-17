@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
         ActivePlayer = message.author.id;
     try { for (let emoji of emojis) await msg.react(emoji); } finally {msg.edit(message_content);} 
     const msg_two = await message.channel.send(`${message.author}`);
-    const collector = msg.createReactionCollector((reaction, user) => {return emojis.includes(reaction.emoji.name) && (user.id == message.author.id || user.id == member.id);}, { time: 60 * 1000 * 5 }); // ييراكب الرياكشن اللي بيتحط علي الرسالة
+    const collector = msg.createReactionCollector((reaction, user) => {return emojis.includes(reaction.emoji.name) && (user.id == message.author.id || user.id == member.id);}, { time: 60 * 1000 * 5 }); 
     collector.on('collect', (reaction, user) => {
     reaction.users.remove(user).catch(console.error);
     if(ActivePlayer !== user.id)return;
